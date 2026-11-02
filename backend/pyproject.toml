@@ -1,0 +1,16 @@
+[project]
+name = "nexora-backend"
+version = "1.0.0"
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 160
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "B"]
+ignore = ["E501", "E402", "F401", "E731", "E701", "F403", "F405", "E741", "B008", "B904", "B006", "B023", "B905"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]
