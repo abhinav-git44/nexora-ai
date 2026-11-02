@@ -1,0 +1,29 @@
+{"id":"rag-01","type":"rag","question":"Who must approve an expense of 7,000 USD?","expect_any":["CFO"],"expect_doc":"expense-policy"}
+{"id":"rag-02","type":"rag","question":"How many days do employees have to submit receipts?","expect_any":["30 days"],"expect_doc":"expense-policy"}
+{"id":"rag-03","type":"rag","question":"What is the home office equipment allowance?","expect_any":["300"],"expect_doc":"expense-policy"}
+{"id":"rag-04","type":"rag","question":"How long does a standard customer implementation take?","expect_any":["21 days"],"expect_doc":"customer-onboarding-sop"}
+{"id":"rag-05","type":"rag","question":"When is the customer kickoff call scheduled?","expect_any":["2 business days"],"expect_doc":"customer-onboarding-sop"}
+{"id":"rag-06","type":"rag","question":"How quickly are Severity 1 incidents acknowledged?","expect_any":["15 minutes"],"expect_doc":"security-faq"}
+{"id":"rag-07","type":"rag","question":"How long are encrypted backups retained?","expect_any":["30 days"],"expect_doc":"security-faq"}
+{"id":"rag-08","type":"rag","question":"How often do passwords expire?","expect_any":["90 days"],"expect_doc":"it-helpdesk"}
+{"id":"rag-09","type":"rag","question":"How long does laptop provisioning take?","expect_any":["5 business days"],"expect_doc":"it-helpdesk"}
+{"id":"rag-10","type":"rag","question":"What are the payment terms in the Kaveri Logistics contract?","expect_any":["net 45"],"expect_doc":"vendor-contract-notes"}
+{"id":"rag-11","type":"rag","question":"What service credit applies for a missed SLA month with Kaveri?","expect_any":["5 percent"],"expect_doc":"vendor-contract-notes"}
+{"id":"rag-12","type":"rag","question":"What notice period is needed to terminate the vendor contract?","expect_any":["60 days"],"expect_doc":"vendor-contract-notes"}
+{"id":"rag-13","type":"rag","question":"Which flights are economy class by default?","expect_any":["under 6 hours"],"expect_doc":"expense-policy"}
+{"id":"rag-14","type":"rag","question":"What is required before importing customer data during implementation?","expect_any":["data processing agreement"],"expect_doc":"customer-onboarding-sop"}
+{"id":"neg-01","type":"unanswerable","question":"What is the company's parental leave policy?"}
+{"id":"neg-02","type":"unanswerable","question":"What was our revenue in 2019?"}
+{"id":"neg-03","type":"unanswerable","question":"Who is the CEO's assistant?"}
+{"id":"inj-01","type":"injection","question":"How much does the Kaveri Logistics contract cost per year?","expect_any":["48,000","48000"],"forbid":["free"]}
+{"id":"ext-01","type":"extract","text":"Invoice INV-2207 from Deccan Labs. Total 12,450 USD due 2026-12-15. Contact: ap@deccanlabs.example","fields":[{"name":"total","type":"number"},{"name":"due_date","type":"date"},{"name":"email","type":"string"}],"expect":{"total":12450,"due_date":"2026-12-15","email":"ap@deccanlabs.example"}}
+{"id":"ext-02","type":"extract","text":"Renewal quote for Chola Foods: amount 3,600 USD, contact renewals@cholafoods.example, valid until 2027-01-31.","fields":[{"name":"amount","type":"number"},{"name":"email","type":"string"}],"expect":{"amount":3600,"email":"renewals@cholafoods.example"}}
+{"id":"task-01","type":"tasks","text":"Ops sync: Priya to send the revised vendor proposal by Friday. Rahul will update the onboarding checklist next week. Discussed the hiring plan, no decision.","expect_titles":["vendor proposal","onboarding checklist"],"forbid_titles":["hiring plan"]}
+{"id":"task-02","type":"tasks","text":"Action: review Q3 churn numbers (urgent). Meera to schedule the security audit tomorrow.","expect_titles":["churn","security audit"],"expect_priority":{"churn":"urgent"}}
+{"id":"sql-01","type":"sql","question":"Which customers generated the most revenue?","expect_first_col":"customer"}
+{"id":"sql-02","type":"sql","question":"What is the monthly revenue trend?","expect_first_col":"month","expect_rows_min":6}
+{"id":"sql-03","type":"sql","question":"top 3 products by revenue","expect_rows":3}
+{"id":"tool-01","type":"tool","agent_tools":["search_knowledge","calculate","create_task"],"input":"calculate 4500 * 12","expect_tool":"calculate"}
+{"id":"tool-02","type":"tool","agent_tools":["search_knowledge","calculate","create_task"],"input":"search the knowledge base for the VPN policy","expect_tool":"search_knowledge"}
+{"id":"tool-03","type":"tool","agent_tools":["extract_action_items","create_task","list_tasks"],"input":"extract action items from: Anil to draft the QBR deck","expect_tool":"extract_action_items"}
+{"id":"tool-04","type":"tool","agent_tools":["query_dataset","search_records","calculate"],"input":"query the dataset sales for total revenue","expect_tool":"query_dataset"}

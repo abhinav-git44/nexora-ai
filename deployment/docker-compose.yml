@@ -1,0 +1,67 @@
+# Full local/staging stack: docker compose -f deployment/docker-compose.yml --env-file .env up --build
+name: nexora
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: nexora
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nexora}
+      POSTGRES_DB: nexora
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U nexora"], interval: 5s, retries: 20 }
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+  migrate:
+    image: nexora/backend:latest
+    build: ../backend
+    command: ["alembic", "upgrade", "head"]
+    environment: &backend_env
+      APP_ENV: ${APP_ENV:-production}
+      DATABASE_URL: postgresql+psycopg://nexora:${POSTGRES_PASSWORD:-nexora}@postgres:5432/nexora
+      REDIS_URL: redis://redis:6379/0
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET}
+      ENCRYPTION_KEY: ${ENCRYPTION_KEY:?set ENCRYPTION_KEY}
+      APP_BASE_URL: ${APP_BASE_URL:-http://localhost:3000}
+      API_BASE_URL: ${API_BASE_URL:-http://localhost:3000}
+      COOKIE_SECURE: ${COOKIE_SECURE:-false}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
+      MIXPANEL_TOKEN: ${MIXPANEL_TOKEN:-}
+      SUPER_ADMIN_EMAILS: ${SUPER_ADMIN_EMAILS:-}
+      EMAIL_BACKEND: ${EMAIL_BACKEND:-console}
+      RUN_WORKER_IN_PROCESS: "false"
+      STORAGE_LOCAL_DIR: /app/var/uploads
+    depends_on: { postgres: { condition: service_healthy } }
+    restart: "no"
+  api:
+    image: nexora/backend:latest
+    environment: *backend_env
+    volumes: [uploads:/app/var/uploads]
+    depends_on: { migrate: { condition: service_completed_successfully }, redis: { condition: service_started } }
+    restart: unless-stopped
+  worker:
+    image: nexora/backend:latest
+    command: ["python", "-m", "app.worker.run"]
+    environment: *backend_env
+    volumes: [uploads:/app/var/uploads]
+    depends_on: { migrate: { condition: service_completed_successfully } }
+    restart: unless-stopped
+  web:
+    image: nexora/web:latest
+    build:
+      context: ../frontend
+      args: { BACKEND_URL: "http://api:8000" }
+    environment:
+      BACKEND_URL: http://api:8000
+    ports: ["${WEB_PORT:-3000}:3000"]
+    depends_on: [api]
+    restart: unless-stopped
+  n8n:
+    image: n8nio/n8n:1.80.0
+    profiles: ["automation"]
+    ports: ["5678:5678"]
+    environment: { N8N_SECURE_COOKIE: "false" }
+volumes: { pgdata: {}, uploads: {} }

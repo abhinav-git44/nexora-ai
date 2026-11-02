@@ -1,0 +1,21 @@
+{
+  "name": "NEXORA → n8n: lead enrichment",
+  "nodes": [
+    { "parameters": { "httpMethod": "POST", "path": "lead-enrichment", "responseMode": "lastNode", "options": {} },
+      "name": "Webhook (called by NEXORA 'Run n8n workflow' node)", "type": "n8n-nodes-base.webhook", "typeVersion": 2, "position": [240, 300] },
+    { "parameters": { "conditions": { "string": [{ "value1": "={{$json.body.email}}", "operation": "isNotEmpty" }] } },
+      "name": "Has email?", "type": "n8n-nodes-base.if", "typeVersion": 1, "position": [460, 300] },
+    { "parameters": { "values": { "string": [
+        { "name": "domain", "value": "={{$json.body.email.split('@')[1]}}" },
+        { "name": "segment", "value": "={{ Number($json.body.budget) >= 5000 ? 'mid-market' : 'smb' }}" } ] }, "options": {} },
+      "name": "Derive domain & segment", "type": "n8n-nodes-base.set", "typeVersion": 2, "position": [680, 240] },
+    { "parameters": { "respondWith": "json", "responseBody": "={{ { enriched: true, domain: $json.domain, segment: $json.segment } }}" },
+      "name": "Respond to NEXORA", "type": "n8n-nodes-base.respondToWebhook", "typeVersion": 1, "position": [900, 240] }
+  ],
+  "connections": {
+    "Webhook (called by NEXORA 'Run n8n workflow' node)": { "main": [[{ "node": "Has email?", "type": "main", "index": 0 }]] },
+    "Has email?": { "main": [[{ "node": "Derive domain & segment", "type": "main", "index": 0 }], []] },
+    "Derive domain & segment": { "main": [[{ "node": "Respond to NEXORA", "type": "main", "index": 0 }]] }
+  },
+  "settings": {}
+}

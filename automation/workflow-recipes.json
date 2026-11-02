@@ -1,0 +1,360 @@
+{
+  "doc_summary_alert": {
+    "name": "Summarise new documents and create review tasks",
+    "description": "When a document is indexed, summarise it and create a review task for PDFs.",
+    "definition": {
+      "nodes": [
+        {
+          "id": "trigger",
+          "type": "trigger.document_uploaded",
+          "position": {
+            "x": 60,
+            "y": 180
+          },
+          "data": {
+            "label": "Document uploaded",
+            "config": {}
+          }
+        },
+        {
+          "id": "summary",
+          "type": "action.summarize_document",
+          "position": {
+            "x": 320,
+            "y": 180
+          },
+          "data": {
+            "label": "Summarise",
+            "config": {
+              "document_id": "{{trigger.document_id}}"
+            }
+          }
+        },
+        {
+          "id": "is_pdf",
+          "type": "logic.if",
+          "position": {
+            "x": 580,
+            "y": 180
+          },
+          "data": {
+            "label": "Is PDF?",
+            "config": {
+              "left": "{{trigger.file_type}}",
+              "operator": "equals",
+              "right": "pdf"
+            }
+          }
+        },
+        {
+          "id": "task",
+          "type": "action.create_task",
+          "position": {
+            "x": 840,
+            "y": 100
+          },
+          "data": {
+            "label": "Create review task",
+            "config": {
+              "title": "Review: {{trigger.title}}",
+              "description": "{{nodes.summary.output.summary}}",
+              "priority": "medium",
+              "due_in_days": "3"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "trigger-summary-out",
+          "source": "trigger",
+          "target": "summary",
+          "sourceHandle": null
+        },
+        {
+          "id": "summary-is_pdf-out",
+          "source": "summary",
+          "target": "is_pdf",
+          "sourceHandle": null
+        },
+        {
+          "id": "is_pdf-task-true",
+          "source": "is_pdf",
+          "target": "task",
+          "sourceHandle": "true"
+        }
+      ]
+    }
+  },
+  "lead_intake": {
+    "name": "Lead intake form \u2192 CRM record \u2192 follow-up",
+    "description": "Capture leads from a hosted form, store them as records, qualify by budget and create a follow-up task.",
+    "definition": {
+      "nodes": [
+        {
+          "id": "trigger",
+          "type": "trigger.form",
+          "position": {
+            "x": 60,
+            "y": 200
+          },
+          "data": {
+            "label": "Lead form",
+            "config": {
+              "title": "Talk to sales",
+              "fields": "name, email, company, budget, message"
+            }
+          }
+        },
+        {
+          "id": "record",
+          "type": "action.update_record",
+          "position": {
+            "x": 320,
+            "y": 200
+          },
+          "data": {
+            "label": "Upsert lead",
+            "config": {
+              "collection": "leads",
+              "match_field": "email",
+              "match_value": "{{trigger.email}}",
+              "data": "{\"name\": \"{{trigger.name}}\", \"email\": \"{{trigger.email}}\", \"company\": \"{{trigger.company}}\", \"budget\": \"{{trigger.budget}}\"}"
+            }
+          }
+        },
+        {
+          "id": "qualify",
+          "type": "logic.if",
+          "position": {
+            "x": 580,
+            "y": 200
+          },
+          "data": {
+            "label": "Budget \u2265 5000?",
+            "config": {
+              "left": "{{trigger.budget}}",
+              "operator": "greater_than",
+              "right": "5000"
+            }
+          }
+        },
+        {
+          "id": "hot",
+          "type": "action.create_task",
+          "position": {
+            "x": 840,
+            "y": 120
+          },
+          "data": {
+            "label": "Call within 24h",
+            "config": {
+              "title": "Call {{trigger.name}} ({{trigger.company}})",
+              "description": "{{trigger.message}}",
+              "priority": "high",
+              "due_in_days": "1"
+            }
+          }
+        },
+        {
+          "id": "nurture",
+          "type": "action.send_email",
+          "position": {
+            "x": 840,
+            "y": 300
+          },
+          "data": {
+            "label": "Nurture email",
+            "config": {
+              "to": "{{trigger.email}}",
+              "subject": "Thanks for reaching out",
+              "body": "Hi {{trigger.name}},\n\nThanks for contacting us. Here are some resources to get started."
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "trigger-record-out",
+          "source": "trigger",
+          "target": "record",
+          "sourceHandle": null
+        },
+        {
+          "id": "record-qualify-out",
+          "source": "record",
+          "target": "qualify",
+          "sourceHandle": null
+        },
+        {
+          "id": "qualify-hot-true",
+          "source": "qualify",
+          "target": "hot",
+          "sourceHandle": "true"
+        },
+        {
+          "id": "qualify-nurture-false",
+          "source": "qualify",
+          "target": "nurture",
+          "sourceHandle": "false"
+        }
+      ]
+    }
+  },
+  "meeting_notes_to_tasks": {
+    "name": "Meeting notes \u2192 AI action items \u2192 approval \u2192 tasks",
+    "description": "Paste meeting notes via webhook or manual run; AI extracts action items, a manager approves, tasks are created per item.",
+    "definition": {
+      "nodes": [
+        {
+          "id": "trigger",
+          "type": "trigger.manual",
+          "position": {
+            "x": 60,
+            "y": 200
+          },
+          "data": {
+            "label": "Manual run",
+            "config": {
+              "input_example": "{\"notes\": \"Priya to send the proposal by Friday.\"}"
+            }
+          }
+        },
+        {
+          "id": "extract",
+          "type": "action.ai_generate",
+          "position": {
+            "x": 320,
+            "y": 200
+          },
+          "data": {
+            "label": "Summarise notes",
+            "config": {
+              "prompt": "Summarise these meeting notes:\n{{trigger.notes}}",
+              "route": "summarize"
+            }
+          }
+        },
+        {
+          "id": "approve",
+          "type": "logic.approval",
+          "position": {
+            "x": 580,
+            "y": 200
+          },
+          "data": {
+            "label": "Manager approval",
+            "config": {
+              "title": "Create tasks from meeting notes?",
+              "details": "{{nodes.extract.output.text}}"
+            }
+          }
+        },
+        {
+          "id": "task",
+          "type": "action.create_task",
+          "position": {
+            "x": 840,
+            "y": 200
+          },
+          "data": {
+            "label": "Create follow-up task",
+            "config": {
+              "title": "Follow up on meeting",
+              "description": "{{nodes.extract.output.text}}",
+              "priority": "medium",
+              "due_in_days": "2"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "trigger-extract-out",
+          "source": "trigger",
+          "target": "extract",
+          "sourceHandle": null
+        },
+        {
+          "id": "extract-approve-out",
+          "source": "extract",
+          "target": "approve",
+          "sourceHandle": null
+        },
+        {
+          "id": "approve-task-approved",
+          "source": "approve",
+          "target": "task",
+          "sourceHandle": "approved"
+        }
+      ]
+    }
+  },
+  "weekly_report": {
+    "name": "Weekly AI operations report",
+    "description": "Every Monday 09:00 UTC generate an operations report and email it to the team lead.",
+    "definition": {
+      "nodes": [
+        {
+          "id": "trigger",
+          "type": "trigger.schedule",
+          "position": {
+            "x": 60,
+            "y": 200
+          },
+          "data": {
+            "label": "Every Monday",
+            "config": {
+              "cron": "0 9 * * 1"
+            }
+          }
+        },
+        {
+          "id": "report",
+          "type": "action.generate_report",
+          "position": {
+            "x": 320,
+            "y": 200
+          },
+          "data": {
+            "label": "Generate report",
+            "config": {
+              "topic": "Weekly operations summary",
+              "source": "Summarise open risks, completed work and next priorities."
+            }
+          }
+        },
+        {
+          "id": "email",
+          "type": "action.send_email",
+          "position": {
+            "x": 580,
+            "y": 200
+          },
+          "data": {
+            "label": "Email lead",
+            "config": {
+              "to": "ops-lead@example.com",
+              "subject": "Weekly operations report",
+              "body": "{{nodes.report.output.report}}"
+            }
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "trigger-report-out",
+          "source": "trigger",
+          "target": "report",
+          "sourceHandle": null
+        },
+        {
+          "id": "report-email-out",
+          "source": "report",
+          "target": "email",
+          "sourceHandle": null
+        }
+      ]
+    }
+  }
+}

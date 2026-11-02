@@ -1,0 +1,228 @@
+{
+  "openai": {
+    "name": "OpenAI",
+    "category": "AI models",
+    "auth": "api_key",
+    "fields": [
+      {
+        "key": "api_key",
+        "label": "API key",
+        "secret": true
+      }
+    ],
+    "scopes": [
+      "models.read",
+      "responses.create"
+    ],
+    "description": "Use your own OpenAI key for GPT models (BYOK).",
+    "status": "available"
+  },
+  "anthropic": {
+    "name": "Anthropic",
+    "category": "AI models",
+    "auth": "api_key",
+    "fields": [
+      {
+        "key": "api_key",
+        "label": "API key",
+        "secret": true
+      }
+    ],
+    "scopes": [
+      "messages.create"
+    ],
+    "description": "Use your own Anthropic key for Claude models (BYOK).",
+    "status": "available"
+  },
+  "slack": {
+    "name": "Slack",
+    "category": "Communication",
+    "auth": "webhook",
+    "fields": [
+      {
+        "key": "webhook_url",
+        "label": "Incoming webhook URL",
+        "secret": true
+      }
+    ],
+    "scopes": [
+      "incoming-webhook"
+    ],
+    "description": "Post workflow alerts and agent results to a Slack channel.",
+    "status": "available",
+    "oauth": "slack"
+  },
+  "n8n": {
+    "name": "n8n",
+    "category": "Automation",
+    "auth": "api_key",
+    "fields": [
+      {
+        "key": "base_url",
+        "label": "n8n base URL"
+      },
+      {
+        "key": "api_key",
+        "label": "n8n API key",
+        "secret": true
+      }
+    ],
+    "scopes": [
+      "workflow:read",
+      "webhook:call"
+    ],
+    "description": "Call n8n workflows from NEXORA workflows and list your n8n automations.",
+    "status": "available"
+  },
+  "webhooks": {
+    "name": "Custom webhooks",
+    "category": "Developer",
+    "auth": "webhook",
+    "fields": [
+      {
+        "key": "url",
+        "label": "Test endpoint URL"
+      }
+    ],
+    "scopes": [
+      "post"
+    ],
+    "description": "Send signed JSON events to any HTTPS endpoint.",
+    "status": "available"
+  },
+  "notion": {
+    "name": "Notion",
+    "category": "Knowledge",
+    "auth": "api_key",
+    "fields": [
+      {
+        "key": "api_key",
+        "label": "Internal integration token",
+        "secret": true
+      }
+    ],
+    "scopes": [
+      "read_content"
+    ],
+    "description": "Validate a Notion integration token (page import on roadmap).",
+    "status": "beta"
+  },
+  "hubspot": {
+    "name": "HubSpot",
+    "category": "CRM",
+    "auth": "api_key",
+    "fields": [
+      {
+        "key": "api_key",
+        "label": "Private app token",
+        "secret": true
+      }
+    ],
+    "scopes": [
+      "crm.objects.contacts.read"
+    ],
+    "description": "Validate a HubSpot private app token (contact sync on roadmap).",
+    "status": "beta"
+  },
+  "jira": {
+    "name": "Jira",
+    "category": "Project management",
+    "auth": "api_key",
+    "fields": [
+      {
+        "key": "site",
+        "label": "Site (e.g. acme.atlassian.net)"
+      },
+      {
+        "key": "email",
+        "label": "Account email"
+      },
+      {
+        "key": "api_key",
+        "label": "API token",
+        "secret": true
+      }
+    ],
+    "scopes": [
+      "read:jira-work"
+    ],
+    "description": "Validate Jira credentials (issue sync on roadmap).",
+    "status": "beta"
+  },
+  "confluence": {
+    "name": "Confluence",
+    "category": "Knowledge",
+    "auth": "api_key",
+    "fields": [
+      {
+        "key": "site",
+        "label": "Site (e.g. acme.atlassian.net)"
+      },
+      {
+        "key": "email",
+        "label": "Account email"
+      },
+      {
+        "key": "api_key",
+        "label": "API token",
+        "secret": true
+      }
+    ],
+    "scopes": [
+      "read:confluence-content.summary"
+    ],
+    "description": "Validate Confluence credentials (space import on roadmap).",
+    "status": "beta"
+  },
+  "google_workspace": {
+    "name": "Google Workspace",
+    "category": "Productivity",
+    "auth": "oauth",
+    "fields": [],
+    "scopes": [
+      "drive.readonly"
+    ],
+    "description": "OAuth connection to Google Drive (requires GOOGLE_CLIENT_ID).",
+    "status": "requires_config",
+    "oauth": "google"
+  },
+  "microsoft_365": {
+    "name": "Microsoft 365",
+    "category": "Productivity",
+    "auth": "oauth",
+    "fields": [],
+    "scopes": [
+      "Files.Read"
+    ],
+    "description": "Planned: OAuth via Microsoft Entra ID.",
+    "status": "coming_soon"
+  },
+  "salesforce": {
+    "name": "Salesforce",
+    "category": "CRM",
+    "auth": "oauth",
+    "fields": [],
+    "scopes": [
+      "api"
+    ],
+    "description": "Planned: OAuth connected app.",
+    "status": "coming_soon"
+  },
+  "cloudflare": {
+    "name": "Cloudflare",
+    "category": "Infrastructure",
+    "auth": "api_key",
+    "fields": [
+      {
+        "key": "api_key",
+        "label": "API token",
+        "secret": true
+      }
+    ],
+    "scopes": [
+      "user:read"
+    ],
+    "description": "Validate a Cloudflare API token (used for R2 storage / deployments).",
+    "status": "available"
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "chunking_strategy": "recursive",
+    "retrieval_hit@1": 0.929,
+    "retrieval_hit@6": 1.0,
+    "retrieval_mrr": 0.964
+  },
+  {
+    "chunking_strategy": "sentence",
+    "retrieval_hit@1": 0.929,
+    "retrieval_hit@6": 1.0,
+    "retrieval_mrr": 0.964
+  },
+  {
+    "chunking_strategy": "fixed",
+    "retrieval_hit@1": 0.929,
+    "retrieval_hit@6": 1.0,
+    "retrieval_mrr": 0.964
+  }
+]

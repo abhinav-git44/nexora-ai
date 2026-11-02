@@ -1,0 +1,17 @@
+{
+  "name": "n8n → NEXORA: trigger a NEXORA workflow with an HMAC-signed webhook",
+  "nodes": [
+    { "parameters": { "rule": { "interval": [{ "field": "hours", "hoursInterval": 6 }] } }, "name": "Every 6 hours", "type": "n8n-nodes-base.scheduleTrigger", "typeVersion": 1, "position": [240, 300] },
+    { "parameters": { "jsCode": "const crypto = require('crypto');\nconst body = JSON.stringify({ kind: 'crm_sync', at: new Date().toISOString() });\nconst sig = crypto.createHmac('sha256', $env.NEXORA_WEBHOOK_SECRET).update(body).digest('hex');\nreturn [{ json: { body, sig } }];" },
+      "name": "Sign payload (HMAC-SHA256)", "type": "n8n-nodes-base.code", "typeVersion": 2, "position": [460, 300] },
+    { "parameters": { "method": "POST", "url": "={{$env.NEXORA_WEBHOOK_URL}}", "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "X-Nexora-Signature", "value": "=sha256={{$json.sig}}" }, { "name": "Content-Type", "value": "application/json" }] },
+        "sendBody": true, "contentType": "raw", "body": "={{$json.body}}" },
+      "name": "POST to NEXORA webhook trigger", "type": "n8n-nodes-base.httpRequest", "typeVersion": 4, "position": [680, 300] }
+  ],
+  "connections": {
+    "Every 6 hours": { "main": [[{ "node": "Sign payload (HMAC-SHA256)", "type": "main", "index": 0 }]] },
+    "Sign payload (HMAC-SHA256)": { "main": [[{ "node": "POST to NEXORA webhook trigger", "type": "main", "index": 0 }]] }
+  },
+  "settings": {}
+}

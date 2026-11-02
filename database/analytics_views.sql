@@ -1,0 +1,1 @@
+../backend/app/sql/analytics_views.sql

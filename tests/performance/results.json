@@ -1,0 +1,67 @@
+[
+  {
+    "endpoint": "GET /api/health",
+    "requests": 200,
+    "concurrency": 20,
+    "rps": 425.9,
+    "p50_ms": 39.1,
+    "p95_ms": 92.4,
+    "max_ms": 166.8,
+    "error_rate": 0.0,
+    "status_codes": {
+      "200": 200
+    }
+  },
+  {
+    "endpoint": "GET /api/tasks",
+    "requests": 200,
+    "concurrency": 20,
+    "rps": 103.9,
+    "p50_ms": 182.4,
+    "p95_ms": 264.3,
+    "max_ms": 292.8,
+    "error_rate": 0.0,
+    "status_codes": {
+      "200": 200
+    }
+  },
+  {
+    "endpoint": "POST /api/documents/search (hybrid RAG)",
+    "requests": 200,
+    "concurrency": 20,
+    "rps": 106.0,
+    "p50_ms": 179.6,
+    "p95_ms": 242.5,
+    "max_ms": 284.9,
+    "error_rate": 0.0,
+    "status_codes": {
+      "200": 200
+    }
+  },
+  {
+    "endpoint": "GET /api/analytics/dashboard",
+    "requests": 50,
+    "concurrency": 10,
+    "rps": 34.8,
+    "p50_ms": 286.1,
+    "p95_ms": 319.2,
+    "max_ms": 358.3,
+    "error_rate": 0.0,
+    "status_codes": {
+      "200": 50
+    }
+  },
+  {
+    "endpoint": "POST /api/datasets/{id}/sql (guarded SQL)",
+    "requests": 50,
+    "concurrency": 10,
+    "rps": 69.2,
+    "p50_ms": 141.6,
+    "p95_ms": 167.4,
+    "max_ms": 180.1,
+    "error_rate": 0.0,
+    "status_codes": {
+      "200": 50
+    }
+  }
+]

@@ -1,0 +1,971 @@
+{
+ "info": {
+  "name": "NEXORA AI API",
+  "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+  "description": "Curated API validation suite. Run with Newman: npx newman run tests/postman/nexora.postman_collection.json --env-var base_url=http://localhost:8000"
+ },
+ "variable": [
+  {
+   "key": "base_url",
+   "value": "http://localhost:8000"
+  },
+  {
+   "key": "access_token",
+   "value": ""
+  },
+  {
+   "key": "org_id",
+   "value": ""
+  },
+  {
+   "key": "conversation_id",
+   "value": ""
+  },
+  {
+   "key": "agent_id",
+   "value": ""
+  },
+  {
+   "key": "workflow_id",
+   "value": ""
+  }
+ ],
+ "item": [
+  {
+   "name": "1. Auth",
+   "item": [
+    {
+     "name": "Register",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/auth/register",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "auth",
+        "register"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"email\": \"postman-{{$timestamp}}@example.com\",\n  \"password\": \"Postman!Pass123\",\n  \"full_name\": \"Postman User\",\n  \"organization_name\": \"Postman Org\"\n}"
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('201 created', () => pm.response.to.have.status(201));",
+         "pm.collectionVariables.set('access_token', pm.response.json().access_token);"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Me (sets org_id)",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/auth/me",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "auth",
+        "me"
+       ]
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('has org', () => pm.expect(pm.response.json().organizations.length).to.be.above(0));",
+         "pm.collectionVariables.set('org_id', pm.response.json().organizations[0].id);"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Login wrong password \u2192 401",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/auth/login",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "auth",
+        "login"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"email\": \"nobody@example.com\",\n  \"password\": \"x\"\n}"
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('401', () => pm.response.to.have.status(401));"
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "2. Knowledge & RAG",
+   "item": [
+    {
+     "name": "Hybrid search",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "{{org_id}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/documents/search",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "documents",
+        "search"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"query\": \"expense approval\",\n  \"mode\": \"hybrid\"\n}"
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('status 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Ask with citations",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "{{org_id}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/documents/ask",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "documents",
+        "ask"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"question\": \"Who approves expenses above 5000 USD?\"\n}"
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('2xx', () => pm.expect(pm.response.code).to.be.within(200,299));",
+         "pm.test('has citations array', () => pm.expect(pm.response.json()).to.have.property('citations'));"
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "3. Assistant",
+   "item": [
+    {
+     "name": "Create conversation",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "{{org_id}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/conversations",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "conversations"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{}"
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.collectionVariables.set('conversation_id', pm.response.json().id);",
+         "pm.test('201', () => pm.response.to.have.status(201));"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Send message",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "{{org_id}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/conversations/{{conversation_id}}/messages",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "conversations",
+        "{{conversation_id}}",
+        "messages"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"content\": \"Summarise our onboarding SOP\"\n}"
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('status 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Extract structured data",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "{{org_id}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/assistant/extract",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "assistant",
+        "extract"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"text\": \"Invoice from Acme, total 4500, contact billing@acme.example\",\n  \"fields\": [\n    {\n      \"name\": \"total\",\n      \"type\": \"number\"\n    },\n    {\n      \"name\": \"email\",\n      \"type\": \"string\"\n    }\n  ]\n}"
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('status 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "4. Agents",
+   "item": [
+    {
+     "name": "List templates",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "{{org_id}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/agents/templates",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "agents",
+        "templates"
+       ]
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('status 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Create from template",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "{{org_id}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/agents/from-template/project_management",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "agents",
+        "from-template",
+        "project_management"
+       ]
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.collectionVariables.set('agent_id', pm.response.json().id);"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Run (sync)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "{{org_id}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/agents/{{agent_id}}/runs",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "agents",
+        "{{agent_id}}",
+        "runs"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"input\": \"Extract action items: Ravi to send the contract by Friday\",\n  \"sync\": true\n}"
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('succeeded', () => pm.expect(pm.response.json().status).to.eql('succeeded'));"
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "5. Workflows",
+   "item": [
+    {
+     "name": "Node catalog",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "{{org_id}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/workflows/nodes",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "workflows",
+        "nodes"
+       ]
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('status 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Create from recipe",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "{{org_id}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/workflows/from-template/lead_intake",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "workflows",
+        "from-template",
+        "lead_intake"
+       ]
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.collectionVariables.set('workflow_id', pm.response.json().id);"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Validate",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "{{org_id}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/workflows/{{workflow_id}}/validate",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "workflows",
+        "{{workflow_id}}",
+        "validate"
+       ]
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('status 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Publish",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "{{org_id}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/workflows/{{workflow_id}}/publish",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "workflows",
+        "{{workflow_id}}",
+        "publish"
+       ]
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('status 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "6. Data intelligence (SQL safety)",
+   "item": [
+    {
+     "name": "List datasets",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "{{org_id}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/datasets",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "datasets"
+       ]
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('status 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "7. Tasks",
+   "item": [
+    {
+     "name": "AI extract tasks (review only)",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "{{org_id}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/tasks/ai/extract",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "tasks",
+        "ai",
+        "extract"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"text\": \"Priya to send the proposal by Friday. Action: review churn (urgent).\",\n  \"create\": false\n}"
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('status 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Create task",
+     "request": {
+      "method": "POST",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "{{org_id}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/tasks",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "tasks"
+       ]
+      },
+      "body": {
+       "mode": "raw",
+       "raw": "{\n  \"title\": \"From Postman\",\n  \"priority\": \"high\"\n}"
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('status 2xx', () => pm.expect(pm.response.code).to.be.within(200, 299));"
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "8. Security checks",
+   "item": [
+    {
+     "name": "No token \u2192 401",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "{{org_id}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/tasks",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "tasks"
+       ]
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('401', () => pm.response.to.have.status(401));"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Foreign org id \u2192 404",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       },
+       {
+        "key": "X-Org-Id",
+        "value": "00000000-0000-0000-0000-000000000000"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/tasks",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "tasks"
+       ]
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('404', () => pm.response.to.have.status(404));"
+        ]
+       }
+      }
+     ]
+    },
+    {
+     "name": "Admin console hidden \u2192 404",
+     "request": {
+      "method": "GET",
+      "header": [
+       {
+        "key": "Content-Type",
+        "value": "application/json"
+       },
+       {
+        "key": "Authorization",
+        "value": "Bearer {{access_token}}"
+       }
+      ],
+      "url": {
+       "raw": "{{base_url}}/api/admin/overview",
+       "host": [
+        "{{base_url}}"
+       ],
+       "path": [
+        "api",
+        "admin",
+        "overview"
+       ]
+      }
+     },
+     "event": [
+      {
+       "listen": "test",
+       "script": {
+        "type": "text/javascript",
+        "exec": [
+         "pm.test('404', () => pm.response.to.have.status(404));"
+        ]
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

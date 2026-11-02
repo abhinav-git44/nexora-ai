@@ -1,0 +1,439 @@
+{
+  "agent_templates": {
+    "business_research": {
+      "name": "Business Research Agent",
+      "description": "Researches a topic across your knowledge base and public web pages and produces a sourced brief.",
+      "instructions": "You are a business research analyst. Break the question into sub-questions, search the knowledge base first, fetch public pages only when the user supplies URLs, and produce a brief with: Summary, Key findings (with sources), Open questions. Never fabricate statistics.",
+      "tools": [
+        "search_knowledge",
+        "fetch_url",
+        "summarize_text",
+        "calculate"
+      ],
+      "output_format": "markdown",
+      "model_route": "analysis"
+    },
+    "hr_recruitment": {
+      "name": "HR Recruitment Assistant",
+      "description": "Screens candidates against role requirements and drafts interview plans.",
+      "instructions": "You assist HR with recruitment. Compare candidate records against the job description in the knowledge base. Score fit on stated criteria only; never use protected characteristics (age, gender, religion, caste, etc.). Recommend next steps and create follow-up tasks when asked.",
+      "tools": [
+        "search_knowledge",
+        "search_records",
+        "create_task",
+        "send_email"
+      ],
+      "output_format": "markdown",
+      "model_route": "agent",
+      "approval_required_tools": [
+        "send_email"
+      ]
+    },
+    "sales_intelligence": {
+      "name": "Sales Intelligence Agent",
+      "description": "Analyses pipeline and revenue data and suggests next best actions per account.",
+      "instructions": "You are a sales operations analyst. Use query_dataset for numbers (never estimate figures yourself), search_records for leads/accounts, and recommend concrete next actions. Create tasks for follow-ups when requested.",
+      "tools": [
+        "query_dataset",
+        "search_records",
+        "search_knowledge",
+        "create_task",
+        "calculate"
+      ],
+      "output_format": "markdown",
+      "model_route": "agent"
+    },
+    "customer_support": {
+      "name": "Customer Support Agent",
+      "description": "Drafts accurate replies to customer questions from the help-centre knowledge base.",
+      "instructions": "You draft customer support replies. Answer only from the knowledge base and cite the source article. If the answer is not documented, say so and suggest escalation. Sending a reply requires human approval.",
+      "tools": [
+        "search_knowledge",
+        "search_records",
+        "send_email",
+        "create_task"
+      ],
+      "output_format": "markdown",
+      "model_route": "chat",
+      "approval_required_tools": [
+        "send_email"
+      ]
+    },
+    "document_analysis": {
+      "name": "Document Analysis Agent",
+      "description": "Reviews contracts, policies and reports; extracts obligations, risks and dates.",
+      "instructions": "You analyse business documents. Extract key parties, dates, obligations, risks and numbers with page references. Flag ambiguous clauses. Output a structured review.",
+      "tools": [
+        "search_knowledge",
+        "summarize_text",
+        "extract_action_items"
+      ],
+      "output_format": "json",
+      "model_route": "analysis",
+      "output_schema": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "summary",
+          "key_points",
+          "risks",
+          "action_items"
+        ],
+        "properties": {
+          "summary": {
+            "type": "string"
+          },
+          "key_points": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "risks": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "action_items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "data_analytics": {
+      "name": "Data Analytics Agent",
+      "description": "Answers business questions over uploaded datasets with SQL-backed numbers.",
+      "instructions": "You are a data analyst. Always use query_dataset to obtain numbers and show the SQL you relied on. Explain trends plainly and state limitations of the data.",
+      "tools": [
+        "query_dataset",
+        "calculate",
+        "summarize_text"
+      ],
+      "output_format": "markdown",
+      "model_route": "agent"
+    },
+    "project_management": {
+      "name": "Project Management Assistant",
+      "description": "Turns meeting notes into tasks and reports on project status.",
+      "instructions": "You are a project coordinator. Extract action items from notes, create tasks for each with sensible priorities and due dates when stated, and summarise current task status when asked.",
+      "tools": [
+        "extract_action_items",
+        "create_task",
+        "list_tasks",
+        "summarize_text"
+      ],
+      "output_format": "markdown",
+      "model_route": "agent"
+    },
+    "operations": {
+      "name": "Operations Assistant",
+      "description": "Monitors operational data and SOPs, identifies bottlenecks and proposes improvements.",
+      "instructions": "You are an operations manager's assistant. Use SOPs from the knowledge base and datasets to find bottlenecks, quantify them, and propose prioritised improvements. Create tasks only when asked.",
+      "tools": [
+        "search_knowledge",
+        "query_dataset",
+        "list_tasks",
+        "create_task",
+        "calculate",
+        "send_webhook"
+      ],
+      "output_format": "markdown",
+      "model_route": "analysis",
+      "approval_required_tools": [
+        "send_webhook"
+      ]
+    }
+  },
+  "tools": [
+    {
+      "name": "search_knowledge",
+      "description": "Search the organisation's knowledge base (permission-aware). Returns relevant passages with titles and pages.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "top_k": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "query",
+          "top_k"
+        ],
+        "additionalProperties": false
+      },
+      "min_role": "viewer",
+      "sensitive": false,
+      "category": "knowledge"
+    },
+    {
+      "name": "create_task",
+      "description": "Create a task in NEXORA task management.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "urgent"
+            ]
+          },
+          "due_date": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "YYYY-MM-DD"
+          }
+        },
+        "required": [
+          "title",
+          "description",
+          "priority",
+          "due_date"
+        ],
+        "additionalProperties": false
+      },
+      "min_role": "member",
+      "sensitive": false,
+      "category": "tasks"
+    },
+    {
+      "name": "list_tasks",
+      "description": "List recent tasks, optionally filtered by status.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "any",
+              "todo",
+              "in_progress",
+              "in_review",
+              "done"
+            ]
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "additionalProperties": false
+      },
+      "min_role": "viewer",
+      "sensitive": false,
+      "category": "tasks"
+    },
+    {
+      "name": "query_dataset",
+      "description": "Answer a quantitative question over an uploaded dataset using validated read-only SQL.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "dataset": {
+            "type": "string",
+            "description": "dataset name"
+          },
+          "question": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "dataset",
+          "question"
+        ],
+        "additionalProperties": false
+      },
+      "min_role": "viewer",
+      "sensitive": false,
+      "category": "data"
+    },
+    {
+      "name": "summarize_text",
+      "description": "Summarise a block of text.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "min_role": "viewer",
+      "sensitive": false,
+      "category": "ai"
+    },
+    {
+      "name": "extract_action_items",
+      "description": "Extract action items (title, owner, due date, priority) from notes or conversations.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "text": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "additionalProperties": false
+      },
+      "min_role": "viewer",
+      "sensitive": false,
+      "category": "ai"
+    },
+    {
+      "name": "calculate",
+      "description": "Evaluate an arithmetic expression (+ - * / % **).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "expression": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "expression"
+        ],
+        "additionalProperties": false
+      },
+      "min_role": "viewer",
+      "sensitive": false,
+      "category": "utility"
+    },
+    {
+      "name": "search_records",
+      "description": "Search business records in a collection (e.g. leads, candidates, tickets).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "collection": {
+            "type": "string"
+          },
+          "query": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "collection",
+          "query"
+        ],
+        "additionalProperties": false
+      },
+      "min_role": "viewer",
+      "sensitive": false,
+      "category": "records"
+    },
+    {
+      "name": "create_record",
+      "description": "Create a business record in a collection. data_json is a JSON object string.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "collection": {
+            "type": "string"
+          },
+          "data_json": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "collection",
+          "data_json"
+        ],
+        "additionalProperties": false
+      },
+      "min_role": "member",
+      "sensitive": false,
+      "category": "records"
+    },
+    {
+      "name": "fetch_url",
+      "description": "Fetch a public web page and return its text (read-only, public internet only).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "additionalProperties": false
+      },
+      "min_role": "member",
+      "sensitive": false,
+      "category": "web"
+    },
+    {
+      "name": "send_email",
+      "description": "Send an email on behalf of the organisation. ALWAYS requires human approval.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "to": {
+            "type": "string"
+          },
+          "subject": {
+            "type": "string"
+          },
+          "body": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "to",
+          "subject",
+          "body"
+        ],
+        "additionalProperties": false
+      },
+      "min_role": "member",
+      "sensitive": true,
+      "category": "communication"
+    },
+    {
+      "name": "send_webhook",
+      "description": "POST a JSON payload to an external URL. ALWAYS requires human approval.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "payload_json": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "url",
+          "payload_json"
+        ],
+        "additionalProperties": false
+      },
+      "min_role": "manager",
+      "sensitive": true,
+      "category": "communication"
+    }
+  ]
+}

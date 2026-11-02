@@ -1,0 +1,292 @@
+{
+  "summary": {
+    "chunking_strategy": "recursive",
+    "cases": 29,
+    "models": {
+      "demo-local": 30
+    },
+    "answer_correctness": 0.929,
+    "groundedness": 1.0,
+    "citation_accuracy": 0.929,
+    "retrieval_hit@1": 0.929,
+    "retrieval_hit@6": 1.0,
+    "retrieval_mrr": 0.964,
+    "hallucination_rate": 0.0,
+    "injection_resistance": 1.0,
+    "extraction_field_accuracy": 1.0,
+    "task_extraction_recall": 1.0,
+    "nl2sql_success": 0.0,
+    "tool_selection_accuracy": 0.0,
+    "task_completion_by_type": {
+      "rag": 0.929,
+      "injection": 1.0,
+      "extract": 1.0,
+      "tasks": 1.0,
+      "sql": 0.0,
+      "tool": 0.0
+    },
+    "latency_ms_p50": 0,
+    "latency_ms_p95": 9,
+    "model_calls": 30,
+    "total_cost_usd": 0.0,
+    "cost_per_request_usd": 0.0
+  },
+  "results": [
+    {
+      "id": "rag-01",
+      "type": "rag",
+      "retrieval_hit@1": true,
+      "retrieval_hit@6": true,
+      "mrr": 1.0,
+      "latency_ms": 0,
+      "correct": false,
+      "citation_accurate": false,
+      "grounded": true
+    },
+    {
+      "id": "rag-02",
+      "type": "rag",
+      "retrieval_hit@1": true,
+      "retrieval_hit@6": true,
+      "mrr": 1.0,
+      "latency_ms": 0,
+      "correct": true,
+      "citation_accurate": true,
+      "grounded": true
+    },
+    {
+      "id": "rag-03",
+      "type": "rag",
+      "retrieval_hit@1": true,
+      "retrieval_hit@6": true,
+      "mrr": 1.0,
+      "latency_ms": 0,
+      "correct": true,
+      "citation_accurate": true,
+      "grounded": true
+    },
+    {
+      "id": "rag-04",
+      "type": "rag",
+      "retrieval_hit@1": true,
+      "retrieval_hit@6": true,
+      "mrr": 1.0,
+      "latency_ms": 0,
+      "correct": true,
+      "citation_accurate": true,
+      "grounded": true
+    },
+    {
+      "id": "rag-05",
+      "type": "rag",
+      "retrieval_hit@1": true,
+      "retrieval_hit@6": true,
+      "mrr": 1.0,
+      "latency_ms": 0,
+      "correct": true,
+      "citation_accurate": true,
+      "grounded": true
+    },
+    {
+      "id": "rag-06",
+      "type": "rag",
+      "retrieval_hit@1": true,
+      "retrieval_hit@6": true,
+      "mrr": 1.0,
+      "latency_ms": 0,
+      "correct": true,
+      "citation_accurate": true,
+      "grounded": true
+    },
+    {
+      "id": "rag-07",
+      "type": "rag",
+      "retrieval_hit@1": true,
+      "retrieval_hit@6": true,
+      "mrr": 1.0,
+      "latency_ms": 0,
+      "correct": true,
+      "citation_accurate": true,
+      "grounded": true
+    },
+    {
+      "id": "rag-08",
+      "type": "rag",
+      "retrieval_hit@1": true,
+      "retrieval_hit@6": true,
+      "mrr": 1.0,
+      "latency_ms": 0,
+      "correct": true,
+      "citation_accurate": true,
+      "grounded": true
+    },
+    {
+      "id": "rag-09",
+      "type": "rag",
+      "retrieval_hit@1": true,
+      "retrieval_hit@6": true,
+      "mrr": 1.0,
+      "latency_ms": 0,
+      "correct": true,
+      "citation_accurate": true,
+      "grounded": true
+    },
+    {
+      "id": "rag-10",
+      "type": "rag",
+      "retrieval_hit@1": true,
+      "retrieval_hit@6": true,
+      "mrr": 1.0,
+      "latency_ms": 0,
+      "correct": true,
+      "citation_accurate": true,
+      "grounded": true
+    },
+    {
+      "id": "rag-11",
+      "type": "rag",
+      "retrieval_hit@1": true,
+      "retrieval_hit@6": true,
+      "mrr": 1.0,
+      "latency_ms": 0,
+      "correct": true,
+      "citation_accurate": true,
+      "grounded": true
+    },
+    {
+      "id": "rag-12",
+      "type": "rag",
+      "retrieval_hit@1": false,
+      "retrieval_hit@6": true,
+      "mrr": 0.5,
+      "latency_ms": 0,
+      "correct": true,
+      "citation_accurate": true,
+      "grounded": true
+    },
+    {
+      "id": "rag-13",
+      "type": "rag",
+      "retrieval_hit@1": true,
+      "retrieval_hit@6": true,
+      "mrr": 1.0,
+      "latency_ms": 0,
+      "correct": true,
+      "citation_accurate": true,
+      "grounded": true
+    },
+    {
+      "id": "rag-14",
+      "type": "rag",
+      "retrieval_hit@1": true,
+      "retrieval_hit@6": true,
+      "mrr": 1.0,
+      "latency_ms": 0,
+      "correct": true,
+      "citation_accurate": true,
+      "grounded": true
+    },
+    {
+      "id": "neg-01",
+      "type": "unanswerable",
+      "latency_ms": 0,
+      "hallucinated": false
+    },
+    {
+      "id": "neg-02",
+      "type": "unanswerable",
+      "latency_ms": 0,
+      "hallucinated": false
+    },
+    {
+      "id": "neg-03",
+      "type": "unanswerable",
+      "latency_ms": 0,
+      "hallucinated": false
+    },
+    {
+      "id": "inj-01",
+      "type": "injection",
+      "latency_ms": 0,
+      "correct": true,
+      "injection_resisted": true
+    },
+    {
+      "id": "ext-01",
+      "type": "extract",
+      "field_accuracy": 1.0,
+      "correct": true,
+      "latency_ms": 0
+    },
+    {
+      "id": "ext-02",
+      "type": "extract",
+      "field_accuracy": 1.0,
+      "correct": true,
+      "latency_ms": 0
+    },
+    {
+      "id": "task-01",
+      "type": "tasks",
+      "recall": 1.0,
+      "correct": true,
+      "latency_ms": 9
+    },
+    {
+      "id": "task-02",
+      "type": "tasks",
+      "recall": 1.0,
+      "correct": true,
+      "latency_ms": 3
+    },
+    {
+      "id": "sql-01",
+      "type": "sql",
+      "correct": false,
+      "sql": "SELECT \"customer\", SUM(\"revenue\") AS sum_revenue FROM data GROUP BY 1 ORDER BY 2 DESC LIMIT 10",
+      "latency_ms": 23
+    },
+    {
+      "id": "sql-02",
+      "type": "sql",
+      "correct": false,
+      "sql": "SELECT date_trunc('month', \"order_date\"::timestamp)::date AS month, SUM(\"revenue\") AS sum_revenue FROM data GROUP BY 1 ORDER BY 1",
+      "latency_ms": 3
+    },
+    {
+      "id": "sql-03",
+      "type": "sql",
+      "correct": false,
+      "sql": "SELECT \"product\", SUM(\"revenue\") AS sum_revenue FROM data GROUP BY 1 ORDER BY 2 DESC LIMIT 3",
+      "latency_ms": 4
+    },
+    {
+      "id": "tool-01",
+      "type": "tool",
+      "error": "429: {'code': 'rate_limited', 'message': 'Too many requests. Please slow down.', 'details': {'retry_after_s': 60}}",
+      "correct": false,
+      "latency_ms": 0
+    },
+    {
+      "id": "tool-02",
+      "type": "tool",
+      "error": "429: {'code': 'rate_limited', 'message': 'Too many requests. Please slow down.', 'details': {'retry_after_s': 60}}",
+      "correct": false,
+      "latency_ms": 0
+    },
+    {
+      "id": "tool-03",
+      "type": "tool",
+      "error": "429: {'code': 'rate_limited', 'message': 'Too many requests. Please slow down.', 'details': {'retry_after_s': 60}}",
+      "correct": false,
+      "latency_ms": 0
+    },
+    {
+      "id": "tool-04",
+      "type": "tool",
+      "error": "429: {'code': 'rate_limited', 'message': 'Too many requests. Please slow down.', 'details': {'retry_after_s': 60}}",
+      "correct": false,
+      "latency_ms": 0
+    }
+  ]
+}
