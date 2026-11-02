@@ -19,5 +19,5 @@ anthropic>=0.75
 cryptography>=43
 sqlglot>=25
 redis>=5.2
-croniter>=5.0
+croniter>=6.2.4
 boto3>=1.35
