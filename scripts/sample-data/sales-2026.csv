@@ -1,0 +1,401 @@
+order_id,order_date,customer,product,category,quantity,revenue,region,status
+5063,2026-01-01,Indus Fintech,Support Plan,Services,3,2780.62,South,Closed Won
+5050,2026-01-02,Fable Studios,Widget Mini,Hardware,21,1151.61,South,Closed Won
+5381,2026-01-07,Everest Logistics,Analytics Add-on,Software,13,3429.53,South,Refunded
+5293,2026-01-09,Fable Studios,Cloud Seat,Software,22,9780.1,West,Refunded
+5354,2026-01-09,Everest Logistics,Support Plan,Services,3,2721.73,West,Closed Won
+5361,2026-01-09,Asha Traders,Support Plan,Services,3,2606.96,North,Closed Won
+5021,2026-01-10,Bharat Retail,Cloud Seat,Software,10,4617.56,South,Refunded
+5089,2026-01-11,Jaipur Crafts,Widget Mini,Hardware,8,358.5,North,Refunded
+5334,2026-01-12,Everest Logistics,Analytics Add-on,Software,22,5767.59,West,Closed Won
+5058,2026-01-13,Deccan Labs,Analytics Add-on,Software,11,2579.62,North,Closed Won
+5398,2026-01-13,Himalaya Textiles,Widget Pro,Hardware,10,1167.69,North,Closed Won
+5084,2026-01-14,Ganga Pharma,Support Plan,Services,3,2801.95,North,Closed Won
+5099,2026-01-15,Himalaya Textiles,Cloud Seat,Software,6,2983.69,East,Closed Won
+5131,2026-01-15,Jaipur Crafts,Widget Mini,Hardware,23,1046.9,North,Closed Won
+5179,2026-01-16,Asha Traders,Analytics Add-on,Software,13,3186.57,North,Closed Won
+5117,2026-01-17,Deccan Labs,Cloud Seat,Software,23,10870.16,West,Closed Won
+5331,2026-01-17,Everest Logistics,Analytics Add-on,Software,6,1605.05,West,Closed Won
+5052,2026-01-19,Fable Studios,Support Plan,Services,3,2466.81,South,Closed Won
+5127,2026-01-19,Himalaya Textiles,Widget Pro,Hardware,11,1241.45,North,Closed Won
+5144,2026-01-19,Jaipur Crafts,Widget Pro,Hardware,8,996.5,East,Closed Won
+5394,2026-01-19,Fable Studios,Onboarding Pack,Services,3,4627.84,North,Closed Won
+5313,2026-01-20,Asha Traders,Cloud Seat,Software,19,9807.65,East,Closed Won
+5124,2026-01-21,Chola Foods,Analytics Add-on,Software,17,4448.22,East,Closed Won
+5139,2026-01-23,Fable Studios,Onboarding Pack,Services,2,3191.81,West,Closed Won
+5227,2026-01-23,Ganga Pharma,Cloud Seat,Software,22,11744.25,West,Refunded
+5338,2026-01-23,Ganga Pharma,Analytics Add-on,Software,8,2042.11,North,Closed Won
+5369,2026-01-24,Bharat Retail,Onboarding Pack,Services,2,3348.09,North,Closed Won
+5239,2026-01-25,Deccan Labs,Analytics Add-on,Software,21,5724.67,West,Closed Won
+5038,2026-01-26,Jaipur Crafts,Analytics Add-on,Software,17,4780.57,South,Closed Won
+5307,2026-01-26,Indus Fintech,Widget Mini,Hardware,21,993.35,North,Closed Won
+5231,2026-01-27,Himalaya Textiles,Cloud Seat,Software,18,10174.75,North,Closed Won
+5199,2026-01-29,Asha Traders,Widget Mini,Hardware,10,568.51,South,Closed Won
+5212,2026-01-29,Fable Studios,Support Plan,Services,1,873.8,West,Closed Won
+5213,2026-01-30,Fable Studios,Cloud Seat,Software,3,1590.06,North,Refunded
+5255,2026-01-30,Bharat Retail,Onboarding Pack,Services,3,4488.95,South,Closed Won
+5328,2026-01-30,Indus Fintech,Analytics Add-on,Software,22,6064.09,North,Closed Won
+5358,2026-01-31,Indus Fintech,Widget Pro,Hardware,3,410.62,North,Closed Won
+5080,2026-02-01,Deccan Labs,Analytics Add-on,Software,13,3678.39,North,Refunded
+5341,2026-02-01,Indus Fintech,Support Plan,Services,3,3060.68,West,Closed Won
+5219,2026-02-03,Fable Studios,Widget Pro,Hardware,18,2323.45,East,Closed Won
+5027,2026-02-04,Asha Traders,Cloud Seat,Software,3,1550.98,East,Closed Won
+5120,2026-02-06,Asha Traders,Widget Mini,Hardware,10,529.34,East,Closed Won
+5043,2026-02-07,Asha Traders,Analytics Add-on,Software,20,5837.12,North,Closed Won
+5116,2026-02-08,Chola Foods,Widget Pro,Hardware,14,1719.63,West,Closed Won
+5207,2026-02-09,Indus Fintech,Onboarding Pack,Services,1,1569.79,South,Closed Won
+5008,2026-02-10,Deccan Labs,Widget Pro,Hardware,13,1530.04,East,Closed Won
+5022,2026-02-10,Bharat Retail,Onboarding Pack,Services,2,3372.82,South,Closed Won
+5206,2026-02-10,Ganga Pharma,Cloud Seat,Software,24,11966.44,East,Closed Won
+5232,2026-02-12,Chola Foods,Cloud Seat,Software,15,8637.52,South,Closed Won
+5069,2026-02-13,Everest Logistics,Support Plan,Services,3,2917.33,East,Closed Won
+5195,2026-02-13,Asha Traders,Widget Mini,Hardware,6,333.91,North,Closed Won
+5242,2026-02-13,Indus Fintech,Cloud Seat,Software,3,1749.52,North,Closed Won
+5001,2026-02-14,Jaipur Crafts,Analytics Add-on,Software,2,460.16,South,Closed Won
+5098,2026-02-14,Everest Logistics,Analytics Add-on,Software,8,2227.42,West,Closed Won
+5205,2026-02-15,Ganga Pharma,Widget Pro,Hardware,8,989.6,West,Closed Won
+5145,2026-02-16,Ganga Pharma,Widget Pro,Hardware,25,3257.25,North,Closed Won
+5171,2026-02-16,Deccan Labs,Onboarding Pack,Services,3,4841.54,North,Closed Won
+5233,2026-02-16,Deccan Labs,Analytics Add-on,Software,12,3496.86,West,Closed Won
+5005,2026-02-17,Ganga Pharma,Widget Pro,Hardware,12,1648.88,East,Closed Won
+5272,2026-02-17,Indus Fintech,Onboarding Pack,Services,1,1614.19,South,Closed Won
+5366,2026-02-17,Ganga Pharma,Analytics Add-on,Software,13,3463.14,North,Closed Won
+5368,2026-02-18,Indus Fintech,Widget Pro,Hardware,8,936.08,West,Closed Won
+5166,2026-02-19,Deccan Labs,Support Plan,Services,1,922.06,East,Closed Won
+5186,2026-02-19,Fable Studios,Widget Mini,Hardware,18,842.07,East,Closed Won
+5033,2026-02-20,Asha Traders,Onboarding Pack,Services,3,5162.66,North,Closed Won
+5109,2026-02-22,Asha Traders,Support Plan,Services,2,1892.14,West,Closed Won
+5216,2026-02-22,Fable Studios,Onboarding Pack,Services,1,1591.1,South,Closed Won
+5126,2026-02-23,Chola Foods,Cloud Seat,Software,14,7796.74,East,Closed Won
+5363,2026-02-24,Bharat Retail,Support Plan,Services,1,892.95,East,Closed Won
+5061,2026-02-25,Jaipur Crafts,Analytics Add-on,Software,12,3380.25,East,Closed Won
+5240,2026-02-26,Himalaya Textiles,Support Plan,Services,3,2521.33,South,Closed Won
+5000,2026-02-27,Asha Traders,Onboarding Pack,Services,2,2993.37,South,Closed Won
+5018,2026-02-27,Everest Logistics,Analytics Add-on,Software,6,1582.44,East,Closed Won
+5336,2026-02-27,Asha Traders,Onboarding Pack,Services,2,3297.26,North,Closed Won
+5091,2026-02-28,Chola Foods,Cloud Seat,Software,4,2181.65,East,Refunded
+5119,2026-02-28,Indus Fintech,Widget Mini,Hardware,21,1021.67,East,Closed Won
+5060,2026-03-01,Everest Logistics,Widget Mini,Hardware,19,1137.99,East,Closed Won
+5165,2026-03-01,Chola Foods,Widget Pro,Hardware,2,244.12,West,Closed Won
+5333,2026-03-02,Chola Foods,Support Plan,Services,2,1944.78,South,Closed Won
+5040,2026-03-03,Jaipur Crafts,Widget Mini,Hardware,19,1045.15,North,Closed Won
+5105,2026-03-03,Deccan Labs,Cloud Seat,Software,4,2282.04,South,Closed Won
+5262,2026-03-04,Chola Foods,Widget Pro,Hardware,15,1773.82,West,Closed Won
+5279,2026-03-04,Everest Logistics,Analytics Add-on,Software,8,1953.38,North,Closed Won
+5303,2026-03-04,Jaipur Crafts,Onboarding Pack,Services,3,4691.55,West,Closed Won
+5121,2026-03-05,Himalaya Textiles,Onboarding Pack,Services,2,3397.65,East,Closed Won
+5108,2026-03-06,Everest Logistics,Widget Pro,Hardware,2,262.5,South,Closed Won
+5066,2026-03-07,Deccan Labs,Analytics Add-on,Software,22,6614.53,South,Refunded
+5201,2026-03-08,Ganga Pharma,Support Plan,Services,3,2719.86,East,Closed Won
+5266,2026-03-08,Jaipur Crafts,Widget Pro,Hardware,3,370.56,West,Closed Won
+5278,2026-03-08,Fable Studios,Support Plan,Services,3,2627.01,South,Closed Won
+5175,2026-03-09,Asha Traders,Cloud Seat,Software,8,4434.27,North,Closed Won
+5226,2026-03-09,Jaipur Crafts,Analytics Add-on,Software,5,1237.51,South,Closed Won
+5085,2026-03-11,Himalaya Textiles,Widget Mini,Hardware,2,102.03,East,Closed Won
+5236,2026-03-12,Asha Traders,Cloud Seat,Software,16,9147.89,South,Closed Won
+5318,2026-03-13,Himalaya Textiles,Cloud Seat,Software,8,3809.97,West,Closed Won
+5193,2026-03-14,Asha Traders,Widget Pro,Hardware,24,3169.54,West,Closed Won
+5399,2026-03-14,Fable Studios,Cloud Seat,Software,11,5937.21,South,Closed Won
+5256,2026-03-15,Jaipur Crafts,Onboarding Pack,Services,2,2889.52,North,Closed Won
+5277,2026-03-15,Fable Studios,Onboarding Pack,Services,2,3477.9,East,Closed Won
+5174,2026-03-16,Chola Foods,Support Plan,Services,2,2122.35,North,Closed Won
+5304,2026-03-16,Everest Logistics,Widget Pro,Hardware,10,1467.74,North,Closed Won
+5220,2026-03-18,Fable Studios,Widget Pro,Hardware,19,2609.65,East,Closed Won
+5140,2026-03-19,Himalaya Textiles,Widget Pro,Hardware,5,660.46,East,Closed Won
+5211,2026-03-19,Himalaya Textiles,Widget Pro,Hardware,16,2080.94,East,Closed Won
+5185,2026-03-20,Himalaya Textiles,Widget Pro,Hardware,3,430.37,North,Closed Won
+5209,2026-03-20,Bharat Retail,Widget Mini,Hardware,25,1422.37,West,Refunded
+5355,2026-03-20,Deccan Labs,Cloud Seat,Software,8,4271.22,South,Closed Won
+5377,2026-03-20,Ganga Pharma,Cloud Seat,Software,12,5943.6,North,Closed Won
+5142,2026-03-21,Bharat Retail,Analytics Add-on,Software,9,2379.83,West,Closed Won
+5264,2026-03-22,Chola Foods,Cloud Seat,Software,17,8728.38,South,Closed Won
+5276,2026-03-22,Himalaya Textiles,Analytics Add-on,Software,16,4379.7,East,Refunded
+5309,2026-03-22,Ganga Pharma,Onboarding Pack,Services,2,3295.83,South,Closed Won
+5016,2026-03-23,Ganga Pharma,Support Plan,Services,1,966.53,West,Closed Won
+5270,2026-03-24,Fable Studios,Onboarding Pack,Services,1,1596.74,East,Closed Won
+5035,2026-03-26,Ganga Pharma,Widget Pro,Hardware,13,1629.55,West,Closed Won
+5034,2026-03-27,Ganga Pharma,Analytics Add-on,Software,16,4125.69,West,Closed Won
+5146,2026-03-27,Everest Logistics,Widget Pro,Hardware,2,255.12,North,Closed Won
+5357,2026-03-28,Fable Studios,Widget Mini,Hardware,5,294.43,West,Closed Won
+5010,2026-03-29,Indus Fintech,Onboarding Pack,Services,1,1530.04,West,Closed Won
+5367,2026-03-29,Bharat Retail,Analytics Add-on,Software,14,4052.49,East,Refunded
+5055,2026-04-01,Ganga Pharma,Widget Pro,Hardware,6,856.27,East,Closed Won
+5019,2026-04-02,Indus Fintech,Widget Pro,Hardware,21,2683.41,South,Closed Won
+5148,2026-04-03,Chola Foods,Widget Mini,Hardware,3,173.41,West,Refunded
+5252,2026-04-03,Indus Fintech,Cloud Seat,Software,11,5554.54,East,Closed Won
+5390,2026-04-03,Indus Fintech,Widget Pro,Hardware,24,3206.69,South,Closed Won
+5110,2026-04-05,Asha Traders,Cloud Seat,Software,16,8129.25,North,Closed Won
+5260,2026-04-06,Himalaya Textiles,Support Plan,Services,2,2248.43,North,Closed Won
+5316,2026-04-06,Asha Traders,Onboarding Pack,Services,2,3640.73,South,Closed Won
+5215,2026-04-07,Fable Studios,Support Plan,Services,2,2036.51,North,Closed Won
+5348,2026-04-07,Jaipur Crafts,Onboarding Pack,Services,3,5166.3,West,Closed Won
+5101,2026-04-08,Bharat Retail,Widget Mini,Hardware,24,1326.54,South,Closed Won
+5347,2026-04-08,Asha Traders,Cloud Seat,Software,13,7689.9,North,Closed Won
+5107,2026-04-10,Everest Logistics,Widget Mini,Hardware,12,625.51,North,Closed Won
+5286,2026-04-10,Fable Studios,Support Plan,Services,2,1821.0,West,Closed Won
+5385,2026-04-11,Himalaya Textiles,Widget Pro,Hardware,5,648.32,West,Closed Won
+5024,2026-04-13,Everest Logistics,Analytics Add-on,Software,22,6515.24,West,Closed Won
+5346,2026-04-15,Fable Studios,Onboarding Pack,Services,1,1901.78,East,Closed Won
+5353,2026-04-15,Fable Studios,Cloud Seat,Software,14,7075.2,South,Closed Won
+5337,2026-04-16,Bharat Retail,Widget Pro,Hardware,20,2420.67,North,Closed Won
+5048,2026-04-18,Fable Studios,Widget Mini,Hardware,22,1307.26,East,Closed Won
+5115,2026-04-19,Everest Logistics,Onboarding Pack,Services,1,1574.0,South,Closed Won
+5028,2026-04-20,Indus Fintech,Widget Mini,Hardware,24,1536.94,West,Closed Won
+5044,2026-04-20,Indus Fintech,Cloud Seat,Software,5,3200.29,North,Closed Won
+5079,2026-04-20,Bharat Retail,Analytics Add-on,Software,14,3857.58,West,Closed Won
+5106,2026-04-21,Himalaya Textiles,Cloud Seat,Software,24,14163.03,East,Closed Won
+5173,2026-04-21,Deccan Labs,Cloud Seat,Software,25,13118.56,North,Closed Won
+5183,2026-04-21,Ganga Pharma,Analytics Add-on,Software,8,2256.51,West,Closed Won
+5283,2026-04-21,Jaipur Crafts,Cloud Seat,Software,2,1020.78,West,Refunded
+5037,2026-04-22,Asha Traders,Support Plan,Services,3,3153.26,East,Closed Won
+5090,2026-04-22,Himalaya Textiles,Onboarding Pack,Services,2,3703.33,South,Refunded
+5360,2026-04-22,Indus Fintech,Analytics Add-on,Software,12,3075.48,West,Closed Won
+5011,2026-04-23,Fable Studios,Widget Pro,Hardware,8,1202.37,East,Closed Won
+5082,2026-04-23,Himalaya Textiles,Widget Mini,Hardware,9,512.08,North,Closed Won
+5057,2026-04-24,Deccan Labs,Analytics Add-on,Software,12,3302.25,South,Closed Won
+5164,2026-04-24,Bharat Retail,Onboarding Pack,Services,2,3840.74,East,Closed Won
+5178,2026-04-24,Jaipur Crafts,Widget Pro,Hardware,24,3579.17,East,Closed Won
+5322,2026-04-24,Deccan Labs,Widget Mini,Hardware,16,844.47,East,Closed Won
+5088,2026-04-25,Bharat Retail,Onboarding Pack,Services,1,1853.83,South,Closed Won
+5189,2026-04-25,Bharat Retail,Cloud Seat,Software,18,10087.64,East,Refunded
+5235,2026-04-25,Asha Traders,Cloud Seat,Software,4,2522.31,East,Closed Won
+5113,2026-04-26,Indus Fintech,Analytics Add-on,Software,15,4813.41,East,Refunded
+5190,2026-04-26,Ganga Pharma,Support Plan,Services,3,3228.42,North,Refunded
+5344,2026-04-26,Everest Logistics,Onboarding Pack,Services,1,1879.46,North,Closed Won
+5375,2026-04-27,Fable Studios,Support Plan,Services,2,2057.7,West,Closed Won
+5026,2026-04-28,Jaipur Crafts,Widget Mini,Hardware,1,51.85,North,Closed Won
+5311,2026-04-29,Indus Fintech,Onboarding Pack,Services,3,5722.01,North,Closed Won
+5118,2026-04-30,Everest Logistics,Onboarding Pack,Services,3,5474.98,South,Closed Won
+5163,2026-04-30,Himalaya Textiles,Widget Pro,Hardware,20,3080.36,East,Refunded
+5070,2026-05-01,Everest Logistics,Widget Mini,Hardware,7,372.47,North,Closed Won
+5265,2026-05-02,Himalaya Textiles,Widget Pro,Hardware,12,1710.51,East,Closed Won
+5149,2026-05-04,Himalaya Textiles,Support Plan,Services,1,984.78,East,Closed Won
+5134,2026-05-05,Himalaya Textiles,Support Plan,Services,1,1027.24,South,Closed Won
+5296,2026-05-05,Asha Traders,Support Plan,Services,3,2858.81,North,Closed Won
+5350,2026-05-05,Jaipur Crafts,Onboarding Pack,Services,1,1717.98,South,Closed Won
+5365,2026-05-05,Deccan Labs,Cloud Seat,Software,22,14030.12,North,Closed Won
+5217,2026-05-07,Himalaya Textiles,Analytics Add-on,Software,17,5043.18,South,Closed Won
+5056,2026-05-08,Everest Logistics,Widget Mini,Hardware,23,1222.06,North,Closed Won
+5074,2026-05-08,Bharat Retail,Analytics Add-on,Software,5,1590.85,East,Closed Won
+5395,2026-05-08,Fable Studios,Widget Mini,Hardware,21,1276.28,West,Closed Won
+5017,2026-05-09,Indus Fintech,Widget Pro,Hardware,22,3299.87,East,Closed Won
+5123,2026-05-09,Asha Traders,Widget Pro,Hardware,8,1270.19,North,Closed Won
+5156,2026-05-09,Chola Foods,Onboarding Pack,Services,1,1958.05,North,Closed Won
+5271,2026-05-09,Deccan Labs,Onboarding Pack,Services,3,5015.63,East,Refunded
+5087,2026-05-10,Bharat Retail,Analytics Add-on,Software,1,315.07,North,Closed Won
+5392,2026-05-10,Chola Foods,Onboarding Pack,Services,2,3817.3,North,Closed Won
+5150,2026-05-11,Asha Traders,Analytics Add-on,Software,10,3100.68,South,Closed Won
+5329,2026-05-11,Asha Traders,Onboarding Pack,Services,1,1815.1,North,Closed Won
+5076,2026-05-13,Deccan Labs,Onboarding Pack,Services,2,3811.72,West,Closed Won
+5261,2026-05-14,Himalaya Textiles,Widget Mini,Hardware,20,1125.64,West,Closed Won
+5352,2026-05-14,Fable Studios,Support Plan,Services,2,2125.34,West,Closed Won
+5014,2026-05-15,Jaipur Crafts,Analytics Add-on,Software,19,5519.42,South,Closed Won
+5042,2026-05-16,Ganga Pharma,Widget Mini,Hardware,22,1362.83,West,Closed Won
+5047,2026-05-16,Bharat Retail,Widget Pro,Hardware,24,3486.74,East,Closed Won
+5176,2026-05-16,Asha Traders,Widget Mini,Hardware,24,1404.2,North,Closed Won
+5285,2026-05-16,Fable Studios,Analytics Add-on,Software,12,3165.32,North,Refunded
+5130,2026-05-17,Indus Fintech,Widget Mini,Hardware,10,588.51,West,Closed Won
+5191,2026-05-17,Asha Traders,Widget Mini,Hardware,9,566.17,East,Closed Won
+5364,2026-05-17,Ganga Pharma,Widget Pro,Hardware,12,1925.07,West,Refunded
+5012,2026-05-18,Bharat Retail,Widget Mini,Hardware,19,1247.54,East,Closed Won
+5383,2026-05-18,Himalaya Textiles,Widget Mini,Hardware,3,164.31,East,Closed Won
+5196,2026-05-20,Himalaya Textiles,Onboarding Pack,Services,2,3589.38,West,Closed Won
+5197,2026-05-20,Deccan Labs,Support Plan,Services,1,1037.88,North,Closed Won
+5306,2026-05-20,Chola Foods,Widget Pro,Hardware,20,3060.12,South,Closed Won
+5077,2026-05-21,Himalaya Textiles,Widget Pro,Hardware,23,3136.55,East,Closed Won
+5181,2026-05-21,Jaipur Crafts,Onboarding Pack,Services,3,5478.34,East,Closed Won
+5362,2026-05-21,Indus Fintech,Cloud Seat,Software,1,601.59,West,Closed Won
+5135,2026-05-22,Ganga Pharma,Cloud Seat,Software,17,9624.04,North,Closed Won
+5287,2026-05-24,Jaipur Crafts,Onboarding Pack,Services,3,4902.14,North,Closed Won
+5228,2026-05-26,Himalaya Textiles,Widget Mini,Hardware,18,1016.69,West,Closed Won
+5200,2026-05-29,Fable Studios,Widget Pro,Hardware,1,145.76,West,Closed Won
+5241,2026-05-30,Ganga Pharma,Widget Pro,Hardware,20,2810.86,West,Closed Won
+5391,2026-05-30,Bharat Retail,Analytics Add-on,Software,22,6692.99,East,Closed Won
+5247,2026-05-31,Deccan Labs,Widget Pro,Hardware,7,1125.02,East,Closed Won
+5376,2026-06-01,Deccan Labs,Onboarding Pack,Services,1,1634.38,South,Closed Won
+5136,2026-06-02,Jaipur Crafts,Support Plan,Services,3,3290.64,South,Closed Won
+5301,2026-06-02,Deccan Labs,Cloud Seat,Software,25,14448.6,South,Closed Won
+5371,2026-06-03,Chola Foods,Support Plan,Services,1,1120.1,West,Closed Won
+5384,2026-06-03,Himalaya Textiles,Widget Pro,Hardware,12,1649.84,South,Closed Won
+5067,2026-06-04,Ganga Pharma,Support Plan,Services,1,1047.27,South,Closed Won
+5093,2026-06-04,Jaipur Crafts,Widget Pro,Hardware,19,2996.02,East,Closed Won
+5340,2026-06-04,Chola Foods,Onboarding Pack,Services,3,5119.25,East,Closed Won
+5112,2026-06-05,Bharat Retail,Widget Mini,Hardware,4,249.03,West,Refunded
+5103,2026-06-06,Jaipur Crafts,Cloud Seat,Software,16,9962.75,East,Closed Won
+5253,2026-06-06,Himalaya Textiles,Support Plan,Services,3,3254.11,West,Closed Won
+5053,2026-06-07,Fable Studios,Widget Pro,Hardware,12,1639.7,South,Closed Won
+5282,2026-06-07,Himalaya Textiles,Widget Pro,Hardware,3,493.4,West,Closed Won
+5294,2026-06-07,Asha Traders,Support Plan,Services,2,2081.1,South,Closed Won
+5188,2026-06-09,Fable Studios,Widget Pro,Hardware,19,2817.44,South,Closed Won
+5281,2026-06-10,Deccan Labs,Widget Mini,Hardware,16,1113.65,West,Closed Won
+5297,2026-06-10,Ganga Pharma,Widget Mini,Hardware,14,906.73,West,Closed Won
+5370,2026-06-11,Asha Traders,Widget Mini,Hardware,19,1067.61,West,Closed Won
+5302,2026-06-12,Himalaya Textiles,Cloud Seat,Software,18,12383.55,East,Closed Won
+5078,2026-06-13,Indus Fintech,Widget Pro,Hardware,5,677.32,West,Closed Won
+5263,2026-06-13,Fable Studios,Onboarding Pack,Services,1,1883.65,East,Closed Won
+5291,2026-06-13,Chola Foods,Analytics Add-on,Software,20,6579.79,East,Refunded
+5388,2026-06-13,Everest Logistics,Onboarding Pack,Services,3,5769.57,South,Closed Won
+5068,2026-06-14,Himalaya Textiles,Analytics Add-on,Software,15,4865.28,West,Closed Won
+5138,2026-06-14,Deccan Labs,Onboarding Pack,Services,1,1896.53,South,Closed Won
+5310,2026-06-14,Everest Logistics,Onboarding Pack,Services,1,2057.04,North,Refunded
+5351,2026-06-14,Everest Logistics,Analytics Add-on,Software,15,4695.79,East,Closed Won
+5387,2026-06-14,Jaipur Crafts,Onboarding Pack,Services,1,1852.23,South,Closed Won
+5158,2026-06-17,Ganga Pharma,Widget Mini,Hardware,7,395.09,East,Closed Won
+5143,2026-06-18,Indus Fintech,Analytics Add-on,Software,11,3543.58,West,Closed Won
+5104,2026-06-19,Fable Studios,Onboarding Pack,Services,2,3528.67,East,Closed Won
+5308,2026-06-19,Himalaya Textiles,Widget Pro,Hardware,22,3528.05,North,Closed Won
+5372,2026-06-19,Ganga Pharma,Onboarding Pack,Services,1,2014.06,North,Closed Won
+5172,2026-06-20,Deccan Labs,Widget Mini,Hardware,19,1098.84,South,Refunded
+5245,2026-06-20,Chola Foods,Widget Pro,Hardware,12,1823.06,South,Closed Won
+5349,2026-06-20,Everest Logistics,Widget Pro,Hardware,7,1168.86,North,Closed Won
+5083,2026-06-22,Ganga Pharma,Onboarding Pack,Services,1,2046.04,South,Refunded
+5273,2026-06-22,Jaipur Crafts,Widget Pro,Hardware,1,134.38,East,Closed Won
+5292,2026-06-22,Indus Fintech,Support Plan,Services,3,3378.33,East,Closed Won
+5356,2026-06-22,Everest Logistics,Analytics Add-on,Software,24,7800.47,West,Closed Won
+5160,2026-06-23,Bharat Retail,Analytics Add-on,Software,3,855.31,South,Closed Won
+5004,2026-06-24,Everest Logistics,Widget Mini,Hardware,7,491.82,East,Closed Won
+5100,2026-06-24,Everest Logistics,Support Plan,Services,3,3726.9,North,Closed Won
+5330,2026-06-26,Bharat Retail,Support Plan,Services,1,1261.36,North,Closed Won
+5373,2026-06-27,Asha Traders,Widget Pro,Hardware,14,1975.52,North,Closed Won
+5059,2026-06-29,Indus Fintech,Analytics Add-on,Software,22,7821.26,East,Closed Won
+5192,2026-06-29,Asha Traders,Widget Mini,Hardware,5,321.85,West,Closed Won
+5208,2026-06-29,Chola Foods,Widget Mini,Hardware,4,230.22,South,Closed Won
+5054,2026-07-01,Indus Fintech,Analytics Add-on,Software,20,6751.55,South,Closed Won
+5300,2026-07-01,Everest Logistics,Support Plan,Services,2,2104.17,South,Closed Won
+5380,2026-07-01,Indus Fintech,Widget Pro,Hardware,20,3122.47,East,Closed Won
+5244,2026-07-02,Bharat Retail,Cloud Seat,Software,8,5386.6,North,Refunded
+5249,2026-07-02,Asha Traders,Onboarding Pack,Services,2,3590.57,East,Closed Won
+5147,2026-07-03,Fable Studios,Analytics Add-on,Software,5,1486.15,West,Refunded
+5170,2026-07-03,Asha Traders,Analytics Add-on,Software,9,2635.14,North,Closed Won
+5320,2026-07-04,Deccan Labs,Widget Pro,Hardware,22,3034.12,East,Closed Won
+5007,2026-07-05,Jaipur Crafts,Widget Mini,Hardware,23,1305.06,South,Closed Won
+5161,2026-07-07,Bharat Retail,Analytics Add-on,Software,1,300.41,North,Closed Won
+5257,2026-07-07,Fable Studios,Analytics Add-on,Software,19,5346.3,South,Closed Won
+5259,2026-07-07,Ganga Pharma,Cloud Seat,Software,21,12666.19,North,Closed Won
+5162,2026-07-08,Everest Logistics,Support Plan,Services,2,2495.45,East,Closed Won
+5229,2026-07-08,Jaipur Crafts,Analytics Add-on,Software,15,5133.62,West,Closed Won
+5251,2026-07-08,Indus Fintech,Cloud Seat,Software,3,2032.59,North,Closed Won
+5009,2026-07-09,Fable Studios,Widget Mini,Hardware,22,1326.07,North,Refunded
+5045,2026-07-09,Everest Logistics,Widget Mini,Hardware,15,1043.88,East,Refunded
+5258,2026-07-09,Fable Studios,Analytics Add-on,Software,25,7143.91,South,Closed Won
+5218,2026-07-10,Everest Logistics,Analytics Add-on,Software,14,4809.33,North,Closed Won
+5020,2026-07-11,Chola Foods,Support Plan,Services,3,3842.92,East,Closed Won
+5288,2026-07-11,Fable Studios,Support Plan,Services,2,2464.93,South,Refunded
+5397,2026-07-11,Ganga Pharma,Analytics Add-on,Software,25,8403.46,South,Closed Won
+5092,2026-07-12,Ganga Pharma,Onboarding Pack,Services,1,1720.62,South,Closed Won
+5222,2026-07-12,Fable Studios,Widget Mini,Hardware,22,1489.33,North,Closed Won
+5389,2026-07-12,Everest Logistics,Analytics Add-on,Software,12,3478.75,South,Refunded
+5081,2026-07-14,Himalaya Textiles,Widget Pro,Hardware,12,1762.02,West,Closed Won
+5335,2026-07-14,Deccan Labs,Widget Mini,Hardware,15,929.52,East,Closed Won
+5386,2026-07-14,Fable Studios,Analytics Add-on,Software,11,3485.06,South,Closed Won
+5153,2026-07-15,Jaipur Crafts,Cloud Seat,Software,19,11630.45,East,Closed Won
+5332,2026-07-15,Himalaya Textiles,Analytics Add-on,Software,13,3746.71,South,Closed Won
+5280,2026-07-16,Jaipur Crafts,Analytics Add-on,Software,8,2893.91,South,Closed Won
+5221,2026-07-20,Chola Foods,Support Plan,Services,3,3904.2,East,Closed Won
+5154,2026-07-22,Everest Logistics,Widget Pro,Hardware,19,3249.55,North,Refunded
+5234,2026-07-22,Indus Fintech,Cloud Seat,Software,8,5060.84,North,Closed Won
+5202,2026-07-23,Asha Traders,Analytics Add-on,Software,1,322.85,North,Closed Won
+5374,2026-07-23,Fable Studios,Widget Pro,Hardware,21,3097.17,West,Closed Won
+5250,2026-07-24,Himalaya Textiles,Analytics Add-on,Software,11,4029.29,West,Closed Won
+5031,2026-07-26,Fable Studios,Widget Pro,Hardware,8,1157.93,West,Closed Won
+5204,2026-07-27,Asha Traders,Cloud Seat,Software,6,4238.08,West,Closed Won
+5317,2026-07-27,Ganga Pharma,Support Plan,Services,2,2110.35,North,Closed Won
+5321,2026-07-27,Indus Fintech,Onboarding Pack,Services,2,4126.08,East,Closed Won
+5132,2026-07-28,Bharat Retail,Widget Mini,Hardware,4,260.0,North,Closed Won
+5343,2026-07-29,Chola Foods,Cloud Seat,Software,13,7852.43,West,Closed Won
+5187,2026-07-30,Fable Studios,Onboarding Pack,Services,2,4321.44,North,Closed Won
+5267,2026-07-30,Ganga Pharma,Support Plan,Services,1,1070.82,East,Closed Won
+5345,2026-07-31,Ganga Pharma,Support Plan,Services,3,3224.42,South,Closed Won
+5359,2026-07-31,Chola Foods,Onboarding Pack,Services,1,1757.83,South,Closed Won
+5184,2026-08-01,Bharat Retail,Cloud Seat,Software,14,8792.49,East,Closed Won
+5274,2026-08-02,Jaipur Crafts,Onboarding Pack,Services,1,1980.69,East,Closed Won
+5312,2026-08-02,Chola Foods,Widget Pro,Hardware,13,2213.13,South,Closed Won
+5167,2026-08-03,Jaipur Crafts,Onboarding Pack,Services,3,5425.09,West,Closed Won
+5030,2026-08-05,Ganga Pharma,Analytics Add-on,Software,24,7046.51,North,Closed Won
+5032,2026-08-05,Chola Foods,Cloud Seat,Software,15,9307.01,North,Closed Won
+5036,2026-08-05,Indus Fintech,Onboarding Pack,Services,3,5946.61,South,Closed Won
+5073,2026-08-06,Deccan Labs,Widget Mini,Hardware,23,1533.8,North,Closed Won
+5051,2026-08-07,Indus Fintech,Widget Pro,Hardware,4,568.55,South,Closed Won
+5094,2026-08-08,Fable Studios,Widget Pro,Hardware,17,2817.7,North,Closed Won
+5114,2026-08-08,Everest Logistics,Support Plan,Services,3,3188.17,North,Closed Won
+5203,2026-08-08,Jaipur Crafts,Analytics Add-on,Software,23,7927.52,East,Closed Won
+5064,2026-08-09,Bharat Retail,Onboarding Pack,Services,2,4123.73,North,Closed Won
+5396,2026-08-09,Bharat Retail,Widget Pro,Hardware,4,600.03,South,Closed Won
+5269,2026-08-10,Indus Fintech,Widget Pro,Hardware,4,643.35,East,Closed Won
+5096,2026-08-11,Chola Foods,Onboarding Pack,Services,3,6728.29,East,Refunded
+5125,2026-08-12,Himalaya Textiles,Widget Pro,Hardware,16,2467.66,East,Closed Won
+5141,2026-08-14,Bharat Retail,Support Plan,Services,2,2113.25,South,Closed Won
+5157,2026-08-14,Asha Traders,Support Plan,Services,2,2556.9,North,Closed Won
+5151,2026-08-15,Fable Studios,Support Plan,Services,2,2502.12,West,Closed Won
+5305,2026-08-15,Everest Logistics,Onboarding Pack,Services,2,3731.44,East,Closed Won
+5326,2026-08-15,Bharat Retail,Onboarding Pack,Services,1,2125.36,West,Closed Won
+5169,2026-08-16,Himalaya Textiles,Widget Mini,Hardware,12,723.49,East,Closed Won
+5180,2026-08-16,Bharat Retail,Widget Pro,Hardware,11,1823.17,North,Closed Won
+5378,2026-08-16,Fable Studios,Cloud Seat,Software,4,2434.49,South,Closed Won
+5254,2026-08-17,Asha Traders,Onboarding Pack,Services,2,4155.37,West,Closed Won
+5319,2026-08-17,Everest Logistics,Cloud Seat,Software,10,6869.74,North,Closed Won
+5324,2026-08-17,Indus Fintech,Onboarding Pack,Services,2,3599.84,North,Closed Won
+5003,2026-08-18,Jaipur Crafts,Cloud Seat,Software,1,718.26,South,Closed Won
+5210,2026-08-18,Jaipur Crafts,Onboarding Pack,Services,3,6818.32,East,Closed Won
+5237,2026-08-18,Jaipur Crafts,Widget Pro,Hardware,3,425.15,South,Closed Won
+5379,2026-08-18,Indus Fintech,Support Plan,Services,3,3551.48,North,Closed Won
+5268,2026-08-19,Himalaya Textiles,Onboarding Pack,Services,3,5827.4,South,Closed Won
+5025,2026-08-20,Bharat Retail,Widget Mini,Hardware,8,479.77,North,Refunded
+5086,2026-08-21,Fable Studios,Cloud Seat,Software,25,18545.11,East,Closed Won
+5194,2026-08-21,Fable Studios,Widget Mini,Hardware,12,772.02,East,Refunded
+5314,2026-08-21,Indus Fintech,Support Plan,Services,2,2676.5,South,Closed Won
+5152,2026-08-22,Everest Logistics,Widget Mini,Hardware,13,959.57,North,Closed Won
+5006,2026-08-24,Indus Fintech,Widget Pro,Hardware,13,1888.12,East,Refunded
+5315,2026-08-28,Everest Logistics,Widget Mini,Hardware,4,260.84,West,Closed Won
+5243,2026-08-29,Asha Traders,Onboarding Pack,Services,2,4600.09,East,Closed Won
+5284,2026-08-29,Everest Logistics,Support Plan,Services,1,1337.86,West,Closed Won
+5298,2026-08-30,Asha Traders,Onboarding Pack,Services,1,2059.76,East,Closed Won
+5323,2026-08-30,Indus Fintech,Onboarding Pack,Services,1,2187.58,North,Closed Won
+5029,2026-08-31,Ganga Pharma,Widget Mini,Hardware,4,245.37,West,Closed Won
+5290,2026-08-31,Indus Fintech,Analytics Add-on,Software,5,1756.91,South,Closed Won
+5023,2026-09-01,Indus Fintech,Widget Mini,Hardware,9,620.82,West,Closed Won
+5071,2026-09-01,Jaipur Crafts,Widget Pro,Hardware,15,2411.68,South,Closed Won
+5177,2026-09-01,Himalaya Textiles,Cloud Seat,Software,17,11923.59,West,Closed Won
+5246,2026-09-03,Chola Foods,Widget Mini,Hardware,3,217.38,West,Closed Won
+5295,2026-09-03,Chola Foods,Support Plan,Services,3,3917.7,West,Closed Won
+5393,2026-09-03,Jaipur Crafts,Analytics Add-on,Software,18,6189.54,West,Closed Won
+5097,2026-09-05,Himalaya Textiles,Analytics Add-on,Software,24,8454.07,East,Closed Won
+5137,2026-09-05,Fable Studios,Cloud Seat,Software,18,13222.32,West,Closed Won
+5275,2026-09-05,Deccan Labs,Onboarding Pack,Services,2,3914.66,North,Closed Won
+5224,2026-09-06,Deccan Labs,Widget Mini,Hardware,5,314.02,East,Closed Won
+5198,2026-09-07,Indus Fintech,Onboarding Pack,Services,2,3656.45,West,Refunded
+5049,2026-09-08,Everest Logistics,Widget Pro,Hardware,3,514.37,East,Closed Won
+5095,2026-09-08,Bharat Retail,Analytics Add-on,Software,12,4287.81,West,Closed Won
+5168,2026-09-08,Jaipur Crafts,Analytics Add-on,Software,9,2735.45,East,Closed Won
+5102,2026-09-09,Himalaya Textiles,Widget Pro,Hardware,3,471.57,West,Closed Won
+5111,2026-09-09,Bharat Retail,Support Plan,Services,3,3912.27,South,Closed Won
+5122,2026-09-10,Himalaya Textiles,Widget Pro,Hardware,20,2930.76,West,Closed Won
+5072,2026-09-11,Ganga Pharma,Widget Mini,Hardware,5,360.4,North,Closed Won
+5342,2026-09-11,Asha Traders,Cloud Seat,Software,21,15193.74,East,Closed Won
+5155,2026-09-12,Everest Logistics,Widget Mini,Hardware,20,1495.19,South,Closed Won
+5013,2026-09-13,Ganga Pharma,Onboarding Pack,Services,2,3786.44,South,Closed Won
+5133,2026-09-13,Everest Logistics,Support Plan,Services,3,3533.38,West,Closed Won
+5159,2026-09-14,Everest Logistics,Widget Mini,Hardware,9,692.4,West,Closed Won
+5339,2026-09-15,Everest Logistics,Widget Mini,Hardware,24,1703.76,East,Closed Won
+5002,2026-09-16,Jaipur Crafts,Widget Pro,Hardware,18,2779.02,West,Closed Won
+5075,2026-09-16,Ganga Pharma,Support Plan,Services,2,2765.25,West,Closed Won
+5325,2026-09-16,Deccan Labs,Support Plan,Services,3,3426.5,East,Closed Won
+5065,2026-09-17,Everest Logistics,Onboarding Pack,Services,2,4000.99,East,Closed Won
+5214,2026-09-17,Ganga Pharma,Analytics Add-on,Software,19,6722.75,North,Closed Won
+5225,2026-09-17,Indus Fintech,Onboarding Pack,Services,3,5536.92,East,Refunded
+5015,2026-09-18,Himalaya Textiles,Widget Pro,Hardware,25,3705.65,North,Closed Won
+5039,2026-09-18,Bharat Retail,Widget Mini,Hardware,3,214.73,South,Closed Won
+5223,2026-09-18,Fable Studios,Widget Pro,Hardware,12,1913.77,South,Closed Won
+5289,2026-09-18,Ganga Pharma,Support Plan,Services,1,1111.11,South,Closed Won
+5062,2026-09-19,Bharat Retail,Analytics Add-on,Software,19,6117.72,North,Closed Won
+5327,2026-09-19,Himalaya Textiles,Widget Pro,Hardware,15,2280.75,West,Closed Won
+5128,2026-09-21,Asha Traders,Onboarding Pack,Services,3,6249.16,North,Closed Won
+5248,2026-09-21,Ganga Pharma,Support Plan,Services,2,2364.61,South,Closed Won
+5129,2026-09-23,Fable Studios,Support Plan,Services,2,2611.48,North,Closed Won
+5382,2026-09-24,Chola Foods,Onboarding Pack,Services,2,3863.99,East,Closed Won
+5041,2026-09-25,Fable Studios,Cloud Seat,Software,7,5145.66,East,Closed Won
+5299,2026-09-27,Ganga Pharma,Cloud Seat,Software,6,4192.56,East,Closed Won
+5046,2026-09-28,Asha Traders,Onboarding Pack,Services,3,6034.61,North,Closed Won
+5230,2026-09-28,Ganga Pharma,Widget Mini,Hardware,7,533.03,South,Closed Won
+5238,2026-09-28,Ganga Pharma,Widget Pro,Hardware,25,4010.81,East,Closed Won
+5182,2026-09-29,Everest Logistics,Analytics Add-on,Software,17,6177.95,North,Closed Won

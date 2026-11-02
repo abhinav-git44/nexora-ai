@@ -381,6 +381,6 @@ def google_callback(code: str, state: str, request: Request, db: Session = Depen
         track(db, "user_signed_up", user_id=user.id, properties={"method": "google"})
     if not link:
         db.add(OAuthAccount(user_id=user.id, provider="google", provider_user_id=info["sub"]))
-    redirect = RedirectResponse(f"{settings.app_base_url}/app")
+    redirect = RedirectResponse(f"{settings.app_base_url}/app?oauth=1")
     _issue(db, user, request, redirect)
     return redirect

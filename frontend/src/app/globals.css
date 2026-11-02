@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- NEXORA design tokens ---------- */
+:root {
+  --canvas: #fafafa;
+  --panel: #ffffff;
+  --panel-2: #f4f4f5;
+  --line: #e4e4e7;
+  --line-strong: #d4d4d8;
+  --fg: #18181b;
+  --muted: #52525b;
+  --subtle: #71717a;
+  --brand: #5b5bd6;
+  --brand-hover: #4c4cc4;
+  --brand-fg: #ffffff;
+  --brand-soft: #eef0ff;
+  --brand-text: #4646b8;
+  --success: #15803d;
+  --success-soft: #e8f7ee;
+  --warning: #b45309;
+  --warning-soft: #fdf3e2;
+  --danger: #c2261d;
+  --danger-soft: #fdecea;
+  --info: #0369a1;
+  --info-soft: #e6f3fb;
+  --ring: #5b5bd666;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 1px 3px rgb(0 0 0 / 0.06);
+  --shadow-lg: 0 10px 30px -10px rgb(0 0 0 / 0.18);
+  --chart-1: #5b5bd6;
+  --chart-2: #0ea5a4;
+  --chart-3: #e8a33d;
+  --chart-4: #d9487a;
+  --chart-5: #64748b;
+  color-scheme: light;
+}
+.dark {
+  --canvas: #0b0b0f;
+  --panel: #131318;
+  --panel-2: #1b1b22;
+  --line: #26262f;
+  --line-strong: #34343f;
+  --fg: #ededf0;
+  --muted: #a1a1aa;
+  --subtle: #8b8b96;
+  --brand: #7c7cf0;
+  --brand-hover: #8f8ff5;
+  --brand-fg: #0b0b0f;
+  --brand-soft: #1e1e3a;
+  --brand-text: #a9a9ff;
+  --success: #4ade80;
+  --success-soft: #0f2a1a;
+  --warning: #fbbf24;
+  --warning-soft: #2b2110;
+  --danger: #f87171;
+  --danger-soft: #2f1414;
+  --info: #38bdf8;
+  --info-soft: #0c2230;
+  --ring: #7c7cf066;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-lg: 0 12px 32px -12px rgb(0 0 0 / 0.7);
+  --chart-1: #8b8bf5;
+  --chart-2: #2dd4bf;
+  --chart-3: #f2b64f;
+  --chart-4: #f06b9a;
+  --chart-5: #94a3b8;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-fg: var(--fg);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-fg: var(--brand-fg);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-text: var(--brand-text);
+  --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
+  --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
+  --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --shadow-card: var(--shadow);
+  --shadow-pop: var(--shadow-lg);
+}
+
+html, body { background: var(--canvas); color: var(--fg); }
+body { font-feature-settings: "cv11", "ss01"; -webkit-font-smoothing: antialiased; }
+*:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; border-radius: 6px; }
+::selection { background: var(--brand-soft); }
+
+.prose-nx { line-height: 1.65; font-size: 0.925rem; }
+.prose-nx h1 { font-size: 1.25rem; font-weight: 600; margin: 0.8em 0 0.4em; }
+.prose-nx h2 { font-size: 1.1rem; font-weight: 600; margin: 0.9em 0 0.35em; }
+.prose-nx h3 { font-size: 1rem; font-weight: 600; margin: 0.8em 0 0.3em; }
+.prose-nx p { margin: 0.45em 0; }
+.prose-nx ul { list-style: disc; padding-left: 1.25rem; margin: 0.4em 0; }
+.prose-nx ol { list-style: decimal; padding-left: 1.25rem; margin: 0.4em 0; }
+.prose-nx li { margin: 0.2em 0; }
+.prose-nx code { font-family: var(--font-mono); font-size: 0.82em; background: var(--panel-2); padding: 0.1em 0.35em; border-radius: 4px; }
+.prose-nx pre { background: var(--panel-2); padding: 0.75rem; border-radius: 8px; overflow-x: auto; font-size: 0.8rem; }
+.prose-nx pre code { background: transparent; padding: 0; }
+.prose-nx a { color: var(--brand-text); text-decoration: underline; text-underline-offset: 2px; }
+.prose-nx table { border-collapse: collapse; margin: 0.5em 0; font-size: 0.85rem; }
+.prose-nx th, .prose-nx td { border: 1px solid var(--line); padding: 0.3em 0.6em; text-align: left; }
+.prose-nx em { color: var(--subtle); }
+
+@keyframes nx-fade-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.animate-in { animation: nx-fade-in 180ms ease-out both; }
+@media (prefers-reduced-motion: reduce) { .animate-in { animation: none; } * { transition: none !important; } }
+
+/* React Flow theming */
+.react-flow { --xy-background-color: var(--canvas); --xy-edge-stroke: var(--line-strong); --xy-edge-stroke-selected: var(--brand);
+  --xy-handle-background-color: var(--brand); --xy-handle-border-color: var(--panel); --xy-minimap-background-color: var(--panel);
+  --xy-controls-button-background-color: var(--panel); --xy-controls-button-color: var(--fg); --xy-controls-button-border-color: var(--line); }

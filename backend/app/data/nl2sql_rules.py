@@ -30,7 +30,7 @@ SYN = {"revenue": ["revenue", "sales", "amount", "total", "price", "value", "inc
 def _expand(words: list[str]) -> list[str]:
     out = list(words)
     for w in words:
-        for k, syns in SYN.items():
+        for syns in SYN.values():
             if w in syns or stem(w) in syns:
                 out.extend(syns)
     return out
