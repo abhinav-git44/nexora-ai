@@ -63,3 +63,12 @@ def test_trial_expiry_falls_back_to_free(client, owner):
         s.trial_ends_at = datetime.now(timezone.utc) - timedelta(minutes=1)
         db.commit()
     assert owner.get("/api/billing/subscription").json()["plan"] == "free"
+
+
+def test_instruction_prefix_not_in_task_title():
+    from app.ai.providers.demo_provider import DemoProvider
+    tasks = DemoProvider.extract_tasks("Extract action items from: Priya to send the renewal proposal by Friday. Rahul will update the checklist.")
+    assert tasks[0]["title"].startswith("Send the renewal proposal") and tasks[0]["owner_name"] == "Priya"
+    assert all("extract" not in t["title"].lower() for t in tasks)
+    t = DemoProvider.extract_tasks("Action: review Q3 churn (urgent).")[0]
+    assert t["owner_name"] is None and t["priority"] == "urgent" and t["title"].lower().startswith("review q3 churn")

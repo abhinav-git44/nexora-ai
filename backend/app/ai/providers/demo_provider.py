@@ -115,13 +115,17 @@ class DemoProvider:
     @staticmethod
     def extract_tasks(text: str) -> list[dict]:
         tasks = []
-        for line in re.split(r"\n|(?<=[.;])\s+", text or ""):
+        # drop instruction preambles such as "Extract action items from:" / "Create tasks for these notes:"
+        text = re.sub(r"(?im)^\s*(?:please\s+)?(?:extract|create|list|find|turn)[^:\n]{0,60}?(?:action items?|tasks?|follow[- ]ups?)[^:\n]{0,30}:\s*", "", text or "")
+        for line in re.split(r"\n|(?<=[.;])\s+", text):
             raw = line.strip(" -•*\t")
             low = raw.lower()
             if len(raw) < 8:
                 continue
             m = re.match(r"^(?:action(?: item)?s?:?\s*)?(?:@?([A-Z][a-z]+)\s*(?:to|will|should|:|-)\s+)(.+)$", raw)
             owner, body = (m.group(1), m.group(2)) if m else (None, raw)
+            if owner and owner.lower() in {"action", "actions", "todo", "note", "notes", "ai", "next", "decision", "follow", "update"}:
+                owner = None
             body_low = body.lower()
             if not (m or low.startswith(("todo", "action", "ai:", "[ ]")) or any(body_low.startswith(v) or f" {v} " in f" {body_low} " for v in ACTION_VERBS)):
                 continue

@@ -23,6 +23,8 @@ from app.models import AIRequest, AIResponseCache
 log = logging.getLogger("nexora.ai")
 PROVIDERS = {"anthropic": AnthropicProvider(), "openai": OpenAIProvider(), "demo": DemoProvider()}
 CACHEABLE_TASKS = {"summarize", "classify", "extract"}
+# Bump whenever prompts, schemas or engine behaviour change so cached responses from the old logic are never served.
+CACHE_VERSION = "2026-11-02.3"
 TIER_TO_ROUTE = {"fast": "summarize", "balanced": "chat", "frontier": "analysis"}
 
 
@@ -61,7 +63,8 @@ def resolve_candidates(task_type: str, preference: str | None = None) -> list[tu
 
 
 def _cache_key(org_id, task_type, req: LLMRequest) -> str:
-    payload = json.dumps({"o": str(org_id), "t": task_type, "s": req.system, "m": [asdict(m) for m in req.messages],
+    candidates = [m for _, m in resolve_candidates(task_type)]
+    payload = json.dumps({"v": CACHE_VERSION, "c": candidates, "o": str(org_id), "t": task_type, "s": req.system, "m": [asdict(m) for m in req.messages],
                           "j": req.json_schema, "md": {k: v for k, v in req.metadata.items() if k != "context"}}, sort_keys=True, default=str)
     return hashlib.sha256(payload.encode()).hexdigest()
 

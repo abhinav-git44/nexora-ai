@@ -33,7 +33,7 @@ const PAGES = [
   await page.locator("table a[href^='/app/knowledge/']").first().click(); await page.waitForLoadState("networkidle"); await page.waitForTimeout(600);
   await page.screenshot({ path: `${OUT}/14-knowledge-document.png` });
   await page.goto(BASE + "/app/agents", { waitUntil: "networkidle" });
-  await page.locator("a[href^='/app/agents/']").first().click(); await page.waitForLoadState("networkidle");
+  await page.locator("a[href^='/app/agents/']", { hasText: "Project Management" }).first().click(); await page.waitForLoadState("networkidle");
   await page.getByRole("tab", { name: /Runs/ }).click(); await page.waitForTimeout(400);
   const row = page.locator("tbody tr").first(); if (await row.count()) { await row.click(); await page.waitForTimeout(1200); }
   await page.screenshot({ path: `${OUT}/16-agent-run.png`, fullPage: true });
