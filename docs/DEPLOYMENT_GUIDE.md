@@ -14,7 +14,15 @@ cd ../frontend && npm ci && npm run dev                       # http://localhost
 Demo logins after seeding: `demo.owner@example.com` / `DemoPassw0rd!` (also `demo.manager@`, `demo.member@`); platform admin
 `admin@example.com` (needs `SUPER_ADMIN_EMAILS=admin@example.com` at signup time).
 
-## 2. Docker Compose (verified)
+## 2. Windows one-command start
+With Docker Desktop running, from the repository folder:
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\start-windows.ps1
+```
+Creates `.env` with fresh secrets (first run only), builds and starts the stack, waits for health, loads the demo workspace and opens
+the browser. `-NoSeed` skips demo data; `-Stop` stops the stack.
+
+## 2b. Docker Compose (verified)
 ```bash
 cp .env.example .env   # set JWT_SECRET, ENCRYPTION_KEY, APP_ENV=production, APP_BASE_URL
 docker compose -f deployment/docker-compose.yml --env-file .env up -d --build
