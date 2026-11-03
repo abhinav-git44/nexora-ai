@@ -38,6 +38,8 @@ Verified in this project: images build, migrations run, API healthy, and all 8 P
 in `APP_ENV=production`. Behind a corporate proxy, pass `--build-arg HTTPS_PROXY=… --secret id=extra_ca,src=ca.crt`.
 
 ## 3. Production reference architecture
+For a $0 portfolio deployment see **[FREE_DEPLOYMENT.md](FREE_DEPLOYMENT.md)** (Vercel + Render + Neon + Supabase).
+
 | Layer | Recommendation |
 |---|---|
 | Edge | **Cloudflare**: DNS, TLS, WAF managed rules, rate limiting on `/api/auth/*`, Turnstile on signup, cache static `/_next/static/*` |

@@ -1,0 +1,51 @@
+# Render Blueprint — free tier API for NEXORA AI (see docs/FREE_DEPLOYMENT.md).
+# Free web services sleep after 15 idle minutes (~1 min to wake) and Render's free tier has no background workers,
+# so the job worker runs inside the API process (RUN_WORKER_IN_PROCESS=true) and migrations run on every start.
+services:
+  - type: web
+    name: nexora-api
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerContext: ./backend
+    dockerfilePath: ./backend/Dockerfile
+    dockerCommand: sh -c "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 1 --proxy-headers --forwarded-allow-ips '*'"
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: RUN_WORKER_IN_PROCESS
+        value: "true"
+      - key: REDIS_URL
+        value: ""
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ENCRYPTION_KEY
+        generateValue: true
+      - key: DATABASE_URL          # Neon connection string (postgres://… is accepted)
+        sync: false
+      - key: APP_BASE_URL          # your Vercel URL, e.g. https://nexora-ai.vercel.app
+        sync: false
+      - key: API_BASE_URL          # same Vercel URL (the API is reached through the site's /api proxy)
+        sync: false
+      - key: SUPER_ADMIN_EMAILS
+        value: admin@example.com
+      - key: STORAGE_BACKEND
+        value: s3
+      - key: S3_ENDPOINT_URL       # https://<project-ref>.supabase.co/storage/v1/s3
+        sync: false
+      - key: S3_REGION             # region shown in Supabase Storage settings
+        sync: false
+      - key: S3_BUCKET
+        value: nexora-uploads
+      - key: S3_ACCESS_KEY_ID      # Supabase Storage S3 access key
+        sync: false
+      - key: S3_SECRET_ACCESS_KEY
+        sync: false
+      - key: ANTHROPIC_API_KEY     # optional — leave empty for the labelled demo engine
+        sync: false
+      - key: OPENAI_API_KEY        # optional
+        sync: false

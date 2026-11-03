@@ -14,7 +14,11 @@ def _fernet() -> Fernet:
             raise RuntimeError("ENCRYPTION_KEY is required in production")
         # Dev fallback: derive from JWT secret so local data stays decryptable between restarts.
         key = base64.urlsafe_b64encode(hashlib.sha256(s.jwt_secret.encode()).digest()).decode()
-    return Fernet(key.encode())
+    try:
+        return Fernet(key.encode())
+    except (ValueError, TypeError):
+        # Not a Fernet-format key (e.g. a platform-generated random secret): derive one deterministically.
+        return Fernet(base64.urlsafe_b64encode(hashlib.sha256(key.encode()).digest()))
 
 
 def encrypt_json(data: dict) -> str:

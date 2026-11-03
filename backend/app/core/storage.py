@@ -31,13 +31,14 @@ class LocalStorage:
             pass
 
 
-class R2Storage:
-    """Cloudflare R2 via its S3-compatible API."""
-    def __init__(self, s):
+class S3Storage:
+    """Any S3-compatible object store: Cloudflare R2, Supabase Storage, AWS S3, MinIO."""
+    def __init__(self, endpoint_url: str | None, bucket: str, access_key: str, secret_key: str, region: str):
         import boto3
-        self.bucket = s.r2_bucket
-        self.client = boto3.client("s3", endpoint_url=f"https://{s.r2_account_id}.r2.cloudflarestorage.com",
-                                   aws_access_key_id=s.r2_access_key_id, aws_secret_access_key=s.r2_secret_access_key, region_name="auto")
+        from botocore.config import Config
+        self.bucket = bucket
+        self.client = boto3.client("s3", endpoint_url=endpoint_url, aws_access_key_id=access_key, aws_secret_access_key=secret_key,
+                                   region_name=region, config=Config(signature_version="s3v4", s3={"addressing_style": "path"}))
 
     def put(self, key, data, content_type="application/octet-stream"):
         self.client.put_object(Bucket=self.bucket, Key=key, Body=data, ContentType=content_type)
@@ -56,7 +57,12 @@ def get_storage():
     global _storage
     if _storage is None:
         s = get_settings()
-        _storage = R2Storage(s) if s.storage_backend == "r2" and s.r2_bucket else LocalStorage(s.storage_local_dir)
+        if s.storage_backend == "r2" and s.r2_bucket:
+            _storage = S3Storage(f"https://{s.r2_account_id}.r2.cloudflarestorage.com", s.r2_bucket, s.r2_access_key_id, s.r2_secret_access_key, "auto")
+        elif s.storage_backend == "s3" and s.s3_bucket:
+            _storage = S3Storage(s.s3_endpoint_url, s.s3_bucket, s.s3_access_key_id, s.s3_secret_access_key, s.s3_region)
+        else:
+            _storage = LocalStorage(s.storage_local_dir)
     return _storage
 
 

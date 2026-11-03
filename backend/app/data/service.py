@@ -228,9 +228,10 @@ def ingest(db: Session, org_id, user_id, name: str, filename: str, data: bytes) 
     if batch:
         db.execute(stmt, batch)
     try:
-        db.execute(text(f'GRANT SELECT ON datasets."{table}" TO nexora_readonly'))
+        with db.begin_nested():  # savepoint: a failed GRANT must not abort the upload transaction
+            db.execute(text(f'GRANT SELECT ON datasets."{table}" TO nexora_readonly'))
     except Exception:
-        pass
+        pass  # read-only role is optional (some hosted Postgres plans cannot create roles)
     ds = Dataset(org_id=org_id, name=name[:200], filename=filename[:300], table_name=table, row_count=len(body),
                  columns=[{k: v for k, v in c.items() if k != "index"} for c in cols], profile=prof, recommendations=recs, created_by=user_id)
     db.add(ds)

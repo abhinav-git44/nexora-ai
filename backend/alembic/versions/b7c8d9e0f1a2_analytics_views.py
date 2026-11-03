@@ -14,8 +14,13 @@ depends_on = None
 
 def upgrade() -> None:
     op.execute((Path(__file__).resolve().parents[2] / "app" / "sql" / "analytics_views.sql").read_text())
-    op.execute("GRANT USAGE ON SCHEMA analytics TO nexora_readonly")
-    op.execute("GRANT SELECT ON ALL TABLES IN SCHEMA analytics TO nexora_readonly")
+    op.execute("""DO $$ BEGIN
+        IF EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'nexora_readonly') THEN
+            GRANT USAGE ON SCHEMA analytics TO nexora_readonly;
+            GRANT SELECT ON ALL TABLES IN SCHEMA analytics TO nexora_readonly;
+        END IF;
+    EXCEPTION WHEN insufficient_privilege THEN RAISE NOTICE 'analytics grants skipped (insufficient privilege)';
+    END $$;""")
 
 
 def downgrade() -> None:

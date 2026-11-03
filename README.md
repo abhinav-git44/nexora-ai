@@ -27,6 +27,7 @@ docker compose -f deployment/docker-compose.yml --env-file .env up -d --build
 open http://localhost:3000
 ```
 Local dev, seeding demo data and production deployment: **[docs/DEPLOYMENT_GUIDE.md](docs/DEPLOYMENT_GUIDE.md)**.
+Free live deployment (Vercel + Render + Neon + Supabase, $0): **[docs/FREE_DEPLOYMENT.md](docs/FREE_DEPLOYMENT.md)**.
 
 ## Repository map
 ```

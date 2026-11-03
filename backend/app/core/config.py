@@ -1,5 +1,6 @@
 """Central configuration. All secrets come from the environment; nothing is hardcoded."""
 from functools import lru_cache
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -35,12 +36,17 @@ class Settings(BaseSettings):
     embedding_provider: str = "auto"  # auto | openai | local
 
     # Storage
-    storage_backend: str = "local"  # local | r2
+    storage_backend: str = "local"  # local | r2 | s3 (any S3-compatible service, e.g. Supabase Storage)
     storage_local_dir: str = "./var/uploads"
     r2_account_id: str | None = None
     r2_access_key_id: str | None = None
     r2_secret_access_key: str | None = None
     r2_bucket: str | None = None
+    s3_endpoint_url: str | None = None
+    s3_region: str = "us-east-1"
+    s3_bucket: str | None = None
+    s3_access_key_id: str | None = None
+    s3_secret_access_key: str | None = None
     max_upload_mb: int = 20
 
     # Email
@@ -78,6 +84,16 @@ class Settings(BaseSettings):
     ai_rate_limit_per_minute: int = 30
     run_worker_in_process: bool = True
     super_admin_emails: str = ""  # comma-separated; bootstrap super admins
+
+    @field_validator("database_url", "analytics_readonly_database_url", mode="before")
+    @classmethod
+    def _normalise_db_url(cls, v):
+        """Hosted providers (Neon, Render, Supabase) hand out postgres:// or postgresql:// URLs; use the psycopg 3 driver."""
+        if isinstance(v, str):
+            for prefix in ("postgres://", "postgresql://"):
+                if v.startswith(prefix):
+                    return "postgresql+psycopg://" + v[len(prefix):]
+        return v
 
     @property
     def is_prod(self) -> bool:

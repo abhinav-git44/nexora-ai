@@ -13,11 +13,13 @@ depends_on = None
 
 def upgrade() -> None:
     op.execute("CREATE SCHEMA IF NOT EXISTS datasets")
+    # The read-only role is optional: hosted Postgres plans without CREATEROLE skip it instead of failing the deploy.
     op.execute("""DO $$ BEGIN
         IF NOT EXISTS (SELECT 1 FROM pg_roles WHERE rolname = 'nexora_readonly') THEN CREATE ROLE nexora_readonly NOLOGIN; END IF;
+        GRANT USAGE ON SCHEMA datasets TO nexora_readonly;
+        ALTER DEFAULT PRIVILEGES IN SCHEMA datasets GRANT SELECT ON TABLES TO nexora_readonly;
+    EXCEPTION WHEN insufficient_privilege THEN RAISE NOTICE 'nexora_readonly role not created (insufficient privilege)';
     END $$;""")
-    op.execute("GRANT USAGE ON SCHEMA datasets TO nexora_readonly")
-    op.execute("ALTER DEFAULT PRIVILEGES IN SCHEMA datasets GRANT SELECT ON TABLES TO nexora_readonly")
 
 
 def downgrade() -> None:
