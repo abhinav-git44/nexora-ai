@@ -3,68 +3,70 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* ---------- NEXORA design tokens ---------- */
+/* Palette: Midnight #013D5A · Lionsmane #FCF3E3 · Celeste #BDD3CE · Herb #708C69 · Marigold #F4A258
+   Text/background pairs are checked to WCAG AA (>= 4.5:1). */
 :root {
-  --canvas: #fafafa;
-  --panel: #ffffff;
-  --panel-2: #f4f4f5;
-  --line: #e4e4e7;
-  --line-strong: #d4d4d8;
-  --fg: #18181b;
-  --muted: #52525b;
-  --subtle: #71717a;
-  --brand: #5b5bd6;
-  --brand-hover: #4c4cc4;
-  --brand-fg: #ffffff;
-  --brand-soft: #eef0ff;
-  --brand-text: #4646b8;
-  --success: #15803d;
-  --success-soft: #e8f7ee;
-  --warning: #b45309;
-  --warning-soft: #fdf3e2;
-  --danger: #c2261d;
-  --danger-soft: #fdecea;
-  --info: #0369a1;
-  --info-soft: #e6f3fb;
-  --ring: #5b5bd666;
-  --shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 1px 3px rgb(0 0 0 / 0.06);
-  --shadow-lg: 0 10px 30px -10px rgb(0 0 0 / 0.18);
-  --chart-1: #5b5bd6;
-  --chart-2: #0ea5a4;
-  --chart-3: #e8a33d;
-  --chart-4: #d9487a;
-  --chart-5: #64748b;
+  --canvas: #fcf3e3;        /* Lionsmane */
+  --panel: #fffbf3;
+  --panel-2: #f6ecda;
+  --line: #ebdfc8;
+  --line-strong: #d9c8a9;
+  --fg: #0b2533;
+  --muted: #3d5361;
+  --subtle: #5a6e7a;
+  --brand: #013d5a;         /* Midnight */
+  --brand-hover: #002c42;
+  --brand-fg: #fcf3e3;
+  --brand-soft: #e2edea;    /* Celeste tint */
+  --brand-text: #013d5a;
+  --success: #4a6644;       /* Herb, darkened for text */
+  --success-soft: #e6ede1;
+  --warning: #8f4d0e;       /* Marigold, darkened for text */
+  --warning-soft: #fbe5cc;
+  --danger: #a8322a;
+  --danger-soft: #f9e1dc;
+  --info: #2c6670;
+  --info-soft: #e2edea;
+  --ring: #013d5a55;
+  --shadow: 0 1px 2px rgb(1 61 90 / 0.05), 0 1px 3px rgb(1 61 90 / 0.07);
+  --shadow-lg: 0 10px 30px -10px rgb(1 61 90 / 0.22);
+  --chart-1: #013d5a;       /* Midnight */
+  --chart-2: #708c69;       /* Herb */
+  --chart-3: #d9863a;       /* Marigold (deepened for contrast on cream) */
+  --chart-4: #5e9187;       /* Celeste (deepened) */
+  --chart-5: #8a8f86;
   color-scheme: light;
 }
 .dark {
-  --canvas: #0b0b0f;
-  --panel: #131318;
-  --panel-2: #1b1b22;
-  --line: #26262f;
-  --line-strong: #34343f;
-  --fg: #ededf0;
-  --muted: #a1a1aa;
-  --subtle: #8b8b96;
-  --brand: #7c7cf0;
-  --brand-hover: #8f8ff5;
-  --brand-fg: #0b0b0f;
-  --brand-soft: #1e1e3a;
-  --brand-text: #a9a9ff;
-  --success: #4ade80;
-  --success-soft: #0f2a1a;
-  --warning: #fbbf24;
-  --warning-soft: #2b2110;
-  --danger: #f87171;
-  --danger-soft: #2f1414;
-  --info: #38bdf8;
-  --info-soft: #0c2230;
-  --ring: #7c7cf066;
+  --canvas: #011f2e;        /* deep Midnight */
+  --panel: #032a3d;
+  --panel-2: #06344a;
+  --line: #0d4560;
+  --line-strong: #185672;
+  --fg: #fcf3e3;            /* Lionsmane */
+  --muted: #c5d4d1;
+  --subtle: #93abaf;
+  --brand: #bdd3ce;         /* Celeste */
+  --brand-hover: #d2e2de;
+  --brand-fg: #013d5a;
+  --brand-soft: #0a4660;
+  --brand-text: #bdd3ce;
+  --success: #a9c4a1;
+  --success-soft: #1a3324;
+  --warning: #f4a258;       /* Marigold */
+  --warning-soft: #3a2a14;
+  --danger: #f2958b;
+  --danger-soft: #3a1a18;
+  --info: #bdd3ce;
+  --info-soft: #0a4660;
+  --ring: #bdd3ce66;
   --shadow: 0 1px 2px rgb(0 0 0 / 0.4);
   --shadow-lg: 0 12px 32px -12px rgb(0 0 0 / 0.7);
-  --chart-1: #8b8bf5;
-  --chart-2: #2dd4bf;
-  --chart-3: #f2b64f;
-  --chart-4: #f06b9a;
-  --chart-5: #94a3b8;
+  --chart-1: #bdd3ce;
+  --chart-2: #9db896;
+  --chart-3: #f4a258;
+  --chart-4: #7fb3c9;
+  --chart-5: #c5d4d1;
   color-scheme: dark;
 }
 

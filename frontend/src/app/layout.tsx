@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: { default: "NEXORA AI — One Intelligent Workspace", template: "%s · NEXORA AI" },
   description: "AI business operations & workflow intelligence: knowledge, agents, automation and analytics in one workspace.",
 };
-export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#0b0b0f" }, { color: "#fafafa" }] };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#011f2e" }, { color: "#fcf3e3" }] };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
