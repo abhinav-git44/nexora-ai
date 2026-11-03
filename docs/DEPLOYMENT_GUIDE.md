@@ -20,6 +20,12 @@ cp .env.example .env   # set JWT_SECRET, ENCRYPTION_KEY, APP_ENV=production, APP
 docker compose -f deployment/docker-compose.yml --env-file .env up -d --build
 # services: postgres(pgvector) · redis · migrate (alembic, one-off) · api · worker · web  [+ n8n with --profile automation]
 ```
+Load the labelled demo workspace (optional, run once after the stack is up):
+```bash
+docker compose -f deployment/docker-compose.yml --env-file .env run --rm -v "$PWD/scripts:/scripts" api python /scripts/seed_demo.py
+```
+(Windows PowerShell: use `-v "${PWD}\scripts:/scripts"`.) Admin console access requires `SUPER_ADMIN_EMAILS=admin@example.com` in `.env`.
+
 Verified in this project: images build, migrations run, API healthy, and all 8 Playwright journeys pass against the compose stack
 in `APP_ENV=production`. Behind a corporate proxy, pass `--build-arg HTTPS_PROXY=… --secret id=extra_ca,src=ca.crt`.
 

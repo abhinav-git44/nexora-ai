@@ -11,7 +11,12 @@ from pathlib import Path
 
 os.environ.setdefault("RUN_WORKER_IN_PROCESS", "false")
 os.environ.setdefault("SUPER_ADMIN_EMAILS", "admin@example.com")
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "backend"))
+# Works from a checkout (../backend) and inside the backend container (/app), e.g.:
+#   docker compose -f deployment/docker-compose.yml --env-file .env run --rm -v ./scripts:/scripts api python /scripts/seed_demo.py
+for _p in (Path(__file__).resolve().parents[1] / "backend", Path("/app")):
+    if (_p / "app" / "main.py").exists():
+        sys.path.insert(0, str(_p))
+        break
 
 from fastapi.testclient import TestClient  # noqa: E402
 from sqlalchemy import select  # noqa: E402
