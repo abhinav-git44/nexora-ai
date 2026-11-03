@@ -32,10 +32,32 @@ if ($Stop) {
 }
 
 Step "Checking Docker Desktop"
+if (-not (Get-Command docker -ErrorAction SilentlyContinue)) {
+    Fail "The 'docker' command was not found. Install Docker Desktop (https://www.docker.com/products/docker-desktop/), restart PowerShell, then run this script again."
+}
 & docker info *> $null
 if ($LASTEXITCODE -ne 0) {
-    Fail "Docker is not running. Start Docker Desktop, wait for 'Engine running', then run this script again."
+    $exe = Join-Path $env:ProgramFiles "Docker\Docker\Docker Desktop.exe"
+    if (Test-Path $exe) {
+        Write-Host "Docker engine is not running - starting Docker Desktop and waiting up to 3 minutes..." -ForegroundColor Yellow
+        Start-Process $exe
+    } else {
+        Write-Host "Docker engine is not running - please start Docker Desktop. Waiting up to 3 minutes..." -ForegroundColor Yellow
+    }
+    for ($i = 0; $i -lt 36; $i++) {
+        Start-Sleep -Seconds 5
+        & docker info *> $null
+        if ($LASTEXITCODE -eq 0) { break }
+        Write-Host "." -NoNewline
+    }
+    Write-Host ""
+    if ($LASTEXITCODE -ne 0) {
+        Write-Host "Docker reported:" -ForegroundColor Yellow
+        & docker info 2>&1 | Select-Object -Last 5 | ForEach-Object { Write-Host "  $_" }
+        Fail "Docker engine is still not available. Open Docker Desktop, wait until it shows 'Engine running', then run this script again."
+    }
 }
+Write-Host "Docker engine is running."
 
 function New-Secret([int]$bytes) {
     $buf = New-Object byte[] $bytes
